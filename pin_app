@@ -1,0 +1,56 @@
+#!/usr/bin/bash
+
+# check if the arguments are correct
+if [ $# -eq 2 ]
+then
+
+
+# store arguments in variables
+app_name=$1
+delay_time=$2
+
+
+# init the msg files
+echo "Started pin_app $app_name @ $(date +%c) " > timing.msg
+echo "Checking @ an interval of $delay_time seconds" >> timing.msg
+echo " " >> timing.msg
+
+
+
+while  :
+do
+	sleep $delay_time
+
+	if `pidof $app_name > /dev/null`
+	then
+		:
+	else
+		
+		echo Stopped @ $(date +%c) >> timing.msg
+		echo Restarting...
+		# Start transmission-gtk
+		$app_name &
+		
+	fi
+
+done
+
+else
+# print how to use
+echo 
+echo "Usage: pin_app app_name checking_interval"
+echo 
+echo "eg: pin_app transmission-gtk 10"
+echo " The above statement checks if transmission-gtk is open/closed every 10secs;"
+echo " 	if closed opens it "
+echo " 	else checks for open/closed after next 10secs..."
+echo 
+
+fi
+
+# EOF
+exit
+
+
+
+
