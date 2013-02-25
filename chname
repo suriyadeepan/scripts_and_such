@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+i=0
+
+for f in *.jpg
+do
+	echo f = $f
+	echo i = $i
+	mv $f $i.jpg
+
+	i=`expr $i + 1`
+
+done

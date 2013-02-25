@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+i=0
+while [ $i -lt 255 ]
+do
+i=`expr $i + 1`
+ssh expert@192.168.20.$i
+
+done
+
+
+
