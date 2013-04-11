@@ -1,0 +1,1389 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="devsite">
+
+  
+
+  <head>
+    <meta charset="utf-8" />
+    <script src="/_static/js/script_head.js"></script>
+    <link rel="stylesheet" type="text/css" href="/_static/css/screen.css" />
+    <link rel="shortcut icon" href="/_static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/_static/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+    <script src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <!--[if lt IE 9]>
+    <script src="/_static/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <script type="text/javascript">
+    var contentTimer = new window.jstiming.Timer();
+
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'en';
+  </script>
+  
+  <title>Google Calendar API v2 Developer's Guide: Java - Google Apps Platform &mdash; Google Developers</title>
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/google-apps/css/apps.css" />
+
+
+
+    
+    
+
+  </head>
+  <body class="two-column docs">
+    
+    <div id="sandbar">
+      
+      
+
+
+
+
+<header id="gc-googlebar">
+
+  <a id="gc-logo" href="/">
+    <img src="/_static/images/developers-logo.svg" alt="Google"/>
+  </a>
+<script>
+if (!Modernizr || !Modernizr.svg) {
+  $('#gc-logo img').attr({src:'/_static/images/developers-logo.png'});
+}
+</script>
+
+  <div class="gc-social">
+    
+    <span class='signed-out'>
+      <a href="/setup?state=%2Fgoogle-apps%2Fcalendar%2Fv2%2Fdevelopers_guide_java" id="loginLink" class="button">Sign in</a>
+    </span>
+    
+  </div>
+
+  <form class="gc-search" action="/search/results" method="GET">
+    <div class="searchbox">
+      
+      
+        <span class="button button-blue mini">Google Calendar API</span>
+      
+      <input type="text" name="q" class="q" id="q" value="" placeholder='Search' autocomplete="off" />
+    </div>
+    <button class="button button-blue">
+      <img src="/_static/images/search.png" alt="Search"/>
+    </button>
+    
+      <input type="hidden" name="p" id="search_project" value="/google-apps/calendar" />
+    
+  </form>
+
+</header>
+
+
+<script>
+  var a=!1,h=window.devsite||{};window.devsite=h;var _gaq=_gaq||[];WebFontConfig={google:{families:["Open+Sans"]}};h.location=window.location;h.reloadWindow=function(){h.location.reload()};h.openWindow=window.open;h.devsite=h.devsite||{};h.devsite.dialogConfig={autoOpen:a,modal:!0,show:"fade",dialogClass:"msgDialog",closeText:"",resizable:a,draggable:a,zIndex:9999};h.KD_FADE_LONG=218;h.KD_FADE_SHORT=130;h.progress=h.progress||{};h.progress.INTERVAL_TIME_MS=460;h.progress.MAX_LOOP=100;h.progress.RIGHT_MARGIN=6;h.progress.TOP_MARGIN=-15;
+h.progress.kennedyProgressDot=function(c){var b=c.parent().find(".progress");b.remove();h.progress.circleInnerHtml='<span class="mask first"><span class="base"></span><span class="mover"></span></span><span class="mask second"><span class="base"></span><span class="mover"></span></span>';h.progress.spinnerHtml='<div class="circle initial"><span class="mask"><span class="mover"></span></span></div><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div><div class="circle blue"></div>';b=
+$("<div></div>").prop("id","loader").prop("class","yellow").html(h.progress.spinnerHtml);b.find(".red").html(h.progress.circleInnerHtml);b.find(".blue").html(h.progress.circleInnerHtml);b.find(".green").html(h.progress.circleInnerHtml);b.find(".yellow").html(h.progress.circleInnerHtml);b.css({position:"absolute",right:h.progress.RIGHT_MARGIN+"px",top:h.progress.TOP_MARGIN+"px"});c.parent().append(b);c=function(){this.colorIndex=-1;this.colors=["red","yellow","green","blue"];this.loader=b;this.loopCount=
+0;this.shouldStop=a};c.prototype.start=function(){var b=this;this.loader.removeClass();this.loader.addClass("firstTime");this.interval=setInterval(function(){b.loop()},h.progress.INTERVAL_TIME_MS)};c.prototype.loop=function(){this.loopCount+=1;this.loader.hasClass("firstTime")?(this.loader.removeClass("firstTime"),this.loader.addClass("initial")):this.loader.hasClass("stopped")?(this.loader.removeClass("stopped"),this.loader.addClass("finishing")):this.loader.hasClass("finishing")?(clearInterval(this.interval),
+b.remove()):(this.colorIndex=(this.colorIndex+1)%this.colors.length,this.loader.removeClass(),this.loader.addClass(this.colors[this.colorIndex]),(this.shouldStop||this.loopCount>h.progress.MAX_LOOP)&&this.loader.addClass("stopped"))};c.prototype.stop=function(){this.shouldStop=!0};var e=new c;return c={start:function(){$.fx.off||e.start()},clear:function(){b.remove()},error:function(){e.stop()}}};h.progress=h.progress||{};
+h.progress.progressDot=function(c){function b(){d+=1;100>d&&f.animate({opacity:"toggle"},h.KD_FADE_LONG,b)}var e=6,f=c.parent().find(".progress");f.remove();f=$("<div></div>").addClass("progress");f.css({position:"absolute","border-radius":e+"px",border:e+"px solid #3D9400",right:e+"px",top:c.parent().height()/2-e+"px",width:0,height:0});c.parent().append(f);var d=0;return c={start:function(){$.fx.off||b()},clear:function(){f.remove()},error:function(){f.stop();f.css({opacity:1,border:e+"px solid #DD4B39"})}}};h.location=window.location;h.setTimeout=function(){return window.setTimeout.apply(window,arguments)};h.clearTimeout=function(){window.clearTimeout.apply(window,arguments)};h.localInit=function(){h.search.init()};h.search={KEY_ESC:27,fadeTime:h.KD_FADE_SHORT,keyDelay:300};
+h.search.init=function(){h.search.initResultHandlers();var c=$(".gc-search");c.submit(function(){if(window.devsite.geo){var b=window.devsite.geo.lat+","+window.devsite.geo.lon,b=$('<input type="hidden" name="l"/>').val(b);c.append(b)}});var b=$("#q");b.unbind("keyup click");b.bind("keyup click",function(b){h.search.timeout&&h.clearTimeout(h.search.timeout);$(this).val()&&b.keyCode!=h.search.KEY_ESC?h.search.timeout=h.setTimeout(function(){h.search.updateResults()},h.search.keyDelay):h.search.removeAutocomplete()});
+var b=$(".searchbox").children(".button"),e=$("#restrict input");(e.is(":checked")||0==e.length&&0!=b.length)&&h.search.grow();$("body").delegate("#restrict input","click",function(){$(this).is(":checked")?h.search.grow($("#restrict input").val()):h.search.shrink();h.search.updateResults();$("#q").focus()})};
+h.search.initResultHandlers=function(){$(".search-results .result").unbind("click");$(".search-results .result").click(function(){var c={type:$(this).data("type"),url:$(this).data("url"),hl:$(this).data("hl"),q:$(this).data("q")};$.post("/search/go",c,function(b){b&&(h.location.href=b)});return a})};h.search.fadeOutIfExists=function(c,b,e){c&&c.length?c.fadeOut(b,e):e()};h.search.removeAutocomplete=function(){var c=$(".search-autocomplete");c.remove();h.search.lastQ=null};
+h.search.grow=function(c){var b=$("#q"),e=$(".searchbox"),f=$(".gc-search").children("button"),d=e.children(".button");if(c){var d=b.val(),g=$(".results").data("query-match");g&&b.val(d.substr(g.length+1));d=$("<span></span>");d.addClass("button button-blue mini");d.text($("#restrict").find("span").text());d.data("query-match",g);e.prepend(d);g=$("<input />");g.attr({id:"search_project",type:"hidden",name:"p",value:c});$(".gc-search").append(g)}d.append($("<pre>  X</pre>"));g=$(".searchbox").width();
+c=d.outerWidth(!0);var l=e.outerWidth(!0)+c;e.css("width",l+"px");b.css("width",g+"px");b=f.offset();b.left+=c+10;f.offset(b);f=function(){h.search.shrink();$("#q").focus()};d.click(f)};
+h.search.shrink=function(){var c=$("#q"),b=$(".searchbox"),e=b.children("input"),f=b.children(".button"),d=f.data("query-match");d&&e.val($.trim(d)+" "+e.val());e=$(".gc-search").children("button");$("#restrict input").prop("checked",a);$("#search_project").remove();d=f.outerWidth(!0);f.remove();f=e.offset();f.left-=d+10;b.css("width","");c.css("width","100%");e.offset(f)};
+h.search.updateResults=function(){var c=$(".searchbox"),b=$("#q"),e=$("#search_project"),f={q:$.trim(b.val()||"")};window.devsite.geo&&(f.l=window.devsite.geo.lat+","+window.devsite.geo.lon);e&&e.val()&&(f.p=escape(e.val()));if(!h.search.lastQ||!(h.search.lastQ.q==f.q&&h.search.lastQ.p==f.p)){h.search.lastQ=f;h.search.xhr&&h.search.xhr.abort();var d=$(".search-results");f.n=d.data("n")||4;var g=h.progress.kennedyProgressDot(b);g.start();h.search.xhr=$.get("/search/results",f,function(e){g.clear();
+e&&($("#what-q").text(f.q),d=$(".search-results"),h.search.fadeOutIfExists(d,h.search.fadeTime,function(){d.empty();if($.trim(e).length){if(!d.length){d=$("<div></div>").addClass("search-results search-autocomplete").data("n",4);$("body").append(d);var g=c.offset();d.css({position:"absolute",top:g.top+c.outerHeight()+3,left:g.left})}d.append(e);var g=$("#search-next"),k=d.children(".results").data("c");g.length?k?(g.attr("href","/search/results?c="+encodeURIComponent(k)+"&q="+encodeURIComponent(f.q)),
+g.show()):g.hide():$("#search-full").show();$("body").bind("click.searchAutocomplete",function(c){!$.contains(d.get(0),c.target)&&(!d.is(c.target)&&!b.is(c.target))&&d.hasClass("search-autocomplete")&&(h.search.removeAutocomplete(),$(this).unbind("click.searchAutocomplete"))});h.search.initResultHandlers();d.fadeIn(h.search.fadeTime)}}))});h.search.xhr.error(function(){g.error()})}};
+
+
+  if (window.jQuery) {
+    $(document).ready(function() {
+      window.devsite.search.init();
+
+      var loginLink = $('#loginLink');
+      if (loginLink.length > 0) {
+        loginLink.click(devsite.devsite.login);
+      }
+    });
+  }
+</script>
+
+      
+    </div>
+    
+
+    
+    
+
+    <div id="gc-wrapper" itemscope itemtype="http://schema.org/Article">
+      
+      <input id="gc-analytics" type="hidden" value="UA-24532603-1" />
+      
+
+      
+
+      <div id="gc-topnav">
+        <div>
+
+          
+          
+
+          <ul>
+
+            
+            
+
+            
+            
+            
+            
+            <li class=""><a href="/">Home</a></li>
+            
+            <li class="active"><a href="/products/">Products</a></li>
+            
+            <li class=""><a href="/events/">Conferences</a></li>
+            
+            <li class=""><a href="/showcase/">Showcase</a></li>
+            
+            <li class=""><a href="/live/">Live</a></li>
+            
+            <li class=""><a href="/groups/">Groups</a></li>
+            
+
+            
+            
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+
+      
+      
+      
+        <div id="gc-appbar">
+          
+          
+<h1>
+
+  <a href="/google-apps/">Google Apps Platform</a>
+  <div class="plusone-container">
+    <div class="g-plusone"
+      data-href="https://developers.google.com/google-apps/calendar/v2/developers_guide_java"
+      data-size="medium"
+      data-source="google:developers"></div>
+  </div>
+
+
+
+
+
+
+</h1>
+
+
+          
+        </div>
+      
+      
+
+      
+        
+      <div id="gc-main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar">
+        
+
+  
+
+
+
+  <nav class="gc-toc"><ul><li class=""><a href="/google-apps/calendar" data-title="Google Calendar API v3"><span>Google Calendar API v3</span></a><ul><li class=""><span class="tlw-title" data-title="Get Started">Get Started</span><ul><li class=""><a href="/google-apps/calendar/get_started" data-title="Ways to Get Started"><span>Ways to Get Started</span></a></li><li class=""><a href="/google-apps/calendar/concepts" data-title="Calendar Concepts"><span>Calendar Concepts</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Your First App">Your First App</span><ul><li class=""><a href="/google-apps/calendar/firstapp" data-title="Prerequisites"><span>Prerequisites</span></a></li><li class=""><a href="/google-apps/calendar/setup" data-title="Set up a Client Library"><span>Set up a Client Library</span></a></li><li class=""><a href="/google-apps/calendar/instantiate" data-title="Configure your App"><span>Configure your App</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="How-To Guides">How-To Guides</span><ul><li class=""><a href="/google-apps/calendar/recurringevents" data-title="Create Recurring Events"><span>Create Recurring Events</span></a></li><li class=""><a href="/google-apps/calendar/auth" data-title="Authorize Requests"><span>Authorize Requests</span></a></li><li class=""><a href="/google-apps/calendar/performance" data-title="Improve Performance"><span>Improve Performance</span></a></li><li class=""><a href="/google-apps/calendar/batch" data-title="Batch Support"><span>Batch Support</span></a></li><li class=""><a href="/google-apps/calendar/migration" data-title="Migrate to v3"><span>Migrate to v3</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference" data-title="Reference"><span>Reference</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/acl" data-title="Acl"><span>Acl</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/acl/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList" data-title="CalendarList"><span>CalendarList</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars" data-title="Calendars"><span>Calendars</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/calendars/clear" data-title="clear"><span>clear</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/colors" data-title="Colors"><span>Colors</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/colors/get" data-title="get"><span>get</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/events" data-title="Events"><span>Events</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/events/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/import" data-title="import"><span>import</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/instances" data-title="instances"><span>instances</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/move" data-title="move"><span>move</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/quickAdd" data-title="quickAdd"><span>quickAdd</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/freebusy" data-title="Freebusy"><span>Freebusy</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/freebusy/query" data-title="query"><span>query</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/settings" data-title="Settings"><span>Settings</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/settings/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/settings/list" data-title="list"><span>list</span></a></li></ul></li></ul></li><li class=""><a href="/google-apps/calendar/downloads" data-title="Downloads"><span>Downloads</span></a></li><li class=""><a href="/google-apps/calendar/pricing" data-title="Usage Limits"><span>Usage Limits</span></a></li><li class=""><a href="/google-apps/calendar/v3/whats-new" data-title="What&#39;s New in v3"><span>What&#39;s New in v3</span></a></li></ul></li></ul><hr/><ul><li class="deprecated"><a href="/google-apps/calendar/v2/developers_guide_protocol" data-title="Google Calendar API v2"><span>Google Calendar API v2<sup>Deprecated</sup></span></a><ul><li class=""><a href="/google-apps/calendar/v2/developers_guide_protocol" data-title="Protocol Guide"><span>Protocol Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_dotnet" data-title=".NET Guide"><span>.NET Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_java" data-title="Java Guide"><span>Java Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_python" data-title="Python Guide"><span>Python Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/reference" data-title="Atom Reference"><span>Atom Reference</span></a></li><li class=""><a href="/google-apps/calendar/v2/faq" data-title="FAQ"><span>FAQ</span></a></li></ul></li></ul><hr/><ul><li class="deprecated"><a href="/google-apps/calendar/v1/developers_guide_protocol" data-title="Google Calendar API v1"><span>Google Calendar API v1<sup>Deprecated</sup></span></a><ul><li class=""><a href="/google-apps/calendar/v1/developers_guide_protocol" data-title="Protocol Guide"><span>Protocol Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_dotnet" data-title=".NET Guide"><span>.NET Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_java" data-title="Java Guide"><span>Java Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_python" data-title="Python Guide"><span>Python Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_javascript" data-title="JavaScript Guide"><span>JavaScript Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/reference" data-title="Atom Reference"><span>Atom Reference</span></a></li></ul></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/gadgets" data-title="Calendar Gadgets"><span>Calendar Gadgets</span></a><ul><li class=""><a href="/google-apps/calendar/gadgets/event/" data-title="Event Gadgets"><span>Event Gadgets</span></a></li><li class=""><a href="/google-apps/calendar/gadgets/sidebar/" data-title="Sidebar Gadgets"><span>Sidebar Gadgets</span></a></li></ul></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/caldav" data-title="CalDAV Developer&#39;s Guide"><span>CalDAV Developer&#39;s Guide</span></a></li></ul><hr/><ul><li class=""><a href="https://groups.google.com/forum/embed/?place=forum/google-calendar-api&amp;showsearch=true" data-title="Discussions"><span>Discussions</span></a></li><li class=""><a href="http://code.google.com/a/google.com/p/apps-api-issues/issues/list?q=label:API-Calendar" data-title="Issue Tracker"><span>Issue Tracker</span></a></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/terms" data-title="Terms of Service"><span>Terms of Service</span></a></li></ul></nav>
+
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           
+           >
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title" >Google Calendar API v2 Developer's Guide: Java</h1>
+  
+  <div itemprop="articleBody">
+  
+    <img style="float:right; margin-left:10px; margin-bottom:5px;" src="/google-apps/calendar/images/data-api-150.png">
+
+    <p>Google Calendar allows client applications to view and update calendar events in the form of Google Data API feeds. Your client application can use the Google Calendar Data API to create new events, edit or delete existing events, and query for events that match particular criteria.</p>
+    <p>There are many possible uses for the Calendar Data API. For example, you can create a web front end for your group's calendar that uses Google Calendar as a back end. Or you can generate a public calendar for Google Calendar to display, based on your organization's event database. Or you can search relevant calendars to display a list of upcoming events on those calendars.</p>
+    <p>This document provides detailed examples for using the <a href="http://code.google.com/p/gdata-java-client">Java Client Library</a> to work with the Google Calendar service. For help setting up the client library, see the <a href="/gdata/articles/java_client_lib">Getting Started Guide</a>. You will find examples of adding events, updating events, deleting events and querying events.  If you're interested in understanding more about the underlying protocol used by the Java Client Library to interact with the Calendar Data API, please see the <a href="developers_guide_protocol.html">protocol tab</a>.</p>
+    <h2>Contents</h2>
+    <nav class="inline-toc">
+    <ol>
+      <li><a href="#Audience">Audience</a></li>
+      <li><a href="#GettingStarted">Getting started</a></li>
+      <li><a href="#Auth">Authenticating to the Calendar service</a>
+        <ol class="toc">
+          <li><a href="#AuthAuthSub">AuthSub proxy authentication</a></li>
+          <li><a href="#AuthClientLogin">ClientLogin username/password authentication</a></li>
+          <li><a href="#AuthMagicCookie">Magic cookie authentication</a></li>
+        </ol>
+      </li>
+      <li><a href="#RetrievingCalendars">Retrieving calendar lists</a>
+        <ol>
+          <li><a href="#RetrievingAllCalendars">Retrieving all calendars</a></li>
+          <li><a href="#RetrievingOwnCalendars">Retrieving only calendars that a user owns</a></li>
+        </ol>
+      </li>
+      <li><a href="#ManagingCalendars">Managing calendars</a>
+        <ol>
+          <li><a href="#CreatingCalendars">Creating new calendars</a></li>
+          <li><a href="#UpdatingCalendars">Updating existing calendars</a></li>
+          <li><a href="#DeletingCalendars">Deleting calendars</a></li>
+        </ol>
+      </li>
+      <li><a href="#ManagingSubscriptions">Managing subscriptions to calendars</a>
+        <ol>
+          <li><a href="#AddingSubscriptions">Adding new subscriptions</a></li>
+          <li><a href="#UpdatingSubscriptions">Updating calendar subscriptions</a></li>
+          <li><a href="#DeletingSubscriptions">Deleting subscriptions</a></li>
+        </ol>
+      </li>
+      <li><a href="#RetrievingEvents">Retrieving events</a>
+        <ol class="toc">
+          <li><a href="#RetrievingWithoutQuery">Retrieving events without query parameters</a></li>
+          <li><a href="#RetrievingDateRange">Retrieving events for a specified date range</a></li>
+          <li><a href="#RetrievingWithQuery">Retrieving events matching a full text query</a></li>
+          </ol>
+      </li>
+      <li><a href="#CreatingEvents">Creating events</a>
+        <ol class="toc">
+          <li><a href="#CreatingSingle">Creating single-occurrence events</a></li>
+          <li><a href="#CreatingQuickAdd">Creating quick add events</a></li>
+          <li><a href="#CreatingGadgets">Creating Calendar Event Gadgets</a></li>
+          <li><a href="#CreatingRecurring">Creating recurring events</a></li>
+        </ol>
+      </li>
+      <li><a href="#UpdatingEvents">Updating events</a></li>
+      <li><a href="#DeletingEvents">Deleting events</a></li>
+      <li><a href="#SharingACalendar">Sharing calendars</a>
+        <ol class="toc">
+          <li><a href="#RetrieveAcl">Retrieving access control lists</a></li>
+          <li><a href="#AddAcl">Adding a user to an access control list</a></li>
+          <li><a href="#UpdateAcl">Updating a user's role in an access control list</a></li>
+          <li><a href="#DeleteAcl">Removing a user from an access control list</a></li>
+        </ol>
+      </li>
+      <li><a href="#AdditionalOps">Additional operations</a>
+        <ol class="toc">
+          <li><a href="#ExtendedProps">Extended properties</a></li>
+          <li><a href="#Reminders">Reminders and Notifications</a></li>
+          </ol>
+      </li>
+      <li><a href="#ImprovingPerformance">Improving performance</a>
+        <ol>
+          <li><a href="#PartialResponse">Requesting a partial response</a> <span class="exp-feat">(Experimental)</span></li>
+          <li><a href="#PartialUpdate">Making a partial update</a> <span class="exp-feat">(Experimental)</span></li>
+          <li><a href="#batch">Performing multiple operations with a batch request</a></li>
+        </ol>
+      </li>
+    </ol>
+    </nav>
+    <h2 id="Audience">Audience</h2>
+    <p>This document is intended for programmers who want to write client applications using the Google Data API Java client library that can interact with Google Calendar.</p>
+    <h2 id="GettingStarted">Getting started</h2>
+    <p>For help setting up the client library, see the <a href="/gdata/articles/java_client_lib">Getting Started Guide</a>. To use the Java client library, you must be running Java 1.5. After <a href="http://code.google.com/p/gdata-java-client/downloads/list">downloading the client library</a>, you'll find the classes you need to get started in the <code>java/lib/gdata-calendar-1.0.jar</code> and <code>java/lib/gdataclient-1.0.jar</code> jar files.</p>
+    <p>A full working copy of this sample is available in the distribution, under the directory <code>gdata/java/sample/calendar</code>.  Build and execution instructions are included in the same directory, in the file <code>README.txt</code>.  To run the sample, you'll need to modify the following values in <code>gdata/java/build.properties</code>:</p>
+    <ul>
+    <li><code>sample.credentials.username</code> is the username you use to log in to Google Calendar.</li>
+    <li><code>sample.credentials.password</code> is the password you use to log in to Google Calendar.</li>
+    <li><code>sample.calendar.feedUrl</code> should have the value <code>https://www.google.com/calendar/feeds/default/private/full</code> if you want the client to use your primary calendar. If you'd like to use another calendar, you can find the calendar's address in the Google Calendar UI. Click the arrow next to the calendar's name in the left sidebar, and choose <b>Calendar settings</b> from the drop-down menu. Then copy and paste the "XML" URL for the Calendar Address seen on the "Calendar Details" tab.  Please replace the suffix <code>/public/basic</code> with <code>/private/full</code> in the URL, as the sample will be authenticating using the provided credentials.</li>
+    <li><code>sample.calendar.aclFeedUrl</code> value is typically <code>https://www.google.com/calendar/feeds/default/acl/full</code>, when working with your primary calendar.  If you're using another calendar, replace <code>/private</code> with <code>/acl</code> in the feed URL above.</li>
+    </ul>
+    <p>The sample performs a number of operations on the provided calendar to demonstrate the use of the Calendar Data API.  Please see the <code>main</code> method of the code for more details as to which operations are performed.</p>
+    <p>To compile the examples in this document into your own code, you'll need to use the following import statements:</p>
+    <pre class="prettyprint">import com.google.gdata.client.*;
+import com.google.gdata.client.calendar.*;
+import com.google.gdata.data.*;
+import com.google.gdata.data.acl.*;
+import com.google.gdata.data.calendar.*;
+import com.google.gdata.data.extensions.*;
+import com.google.gdata.util.*;
+import java.net.URL;</pre>
+    <p>The <a href="/gdata/javadoc/com/google/gdata/client/calendar/CalendarService"><code>CalendarService</code></a> class represents a client connection (with authentication) to a service. The general procedure for sending a query to a service using the client library consists of the following steps:</p>
+    <ol>
+      <li>Obtain or construct the appropriate URL.</li>
+      <li>If you're sending data to a service (for example, if you're inserting a new entry), then transform the raw data into objects using the client library classes. (This step doesn't apply if you're just requesting a feed, as we're doing in this example.)</li>
+      <li>Create a new <code>CalendarService</code> instance, setting your application's name (in the form <code><i>companyName</i>-<i>applicationName</i>-<i>versionID</i></code>).</li>
+      <li>Set the appropriate credentials.</li>
+      <li>Call a method to send the request and receive any results.</li>
+    </ol>
+    <h2 id="Auth">Authenticating to the Calendar service</h2>
+    <p>You can use the Java client library to work with either public or private feeds. Public feeds are read-only and do not require any authentication. Private feeds require that you authenticate to the calendar service. When you work with private feeds, you should use <a href="/gdata/docs/auth/overview#OAuth">OAuth</a> for authentication. If you're unable to use OAuth for any reason, you can use <a href="#AuthClientLogin">ClientLogin</a> or <a href="#AuthAuthSub">AuthSub</a> until you can transition to OAuth.
+
+The calendar service also allows authentication to a read-only private feed using <a href="#AuthMagicCookie">magic cookie</a> authentication.</p>
+
+<p>If you're not sure whether you can use OAuth with your application, see <a href="/apis/accounts/docs/GettingStarted.html">Getting Started with Account Authorization</a> for an overview of various authentication methods.</p>
+
+<h4 id="AuthOAuth">OAuth</h4>
+
+<p><a href="/accounts/docs/OAuth">OAuth</a> is an open-standard authentication protocol intended for web applications or installed applications. OAuth is similar to the <a href="/accounts/docs/AuthSub#signingrequests">secure and registered mode</a> of AuthSub in that all data requests must be digitally signed and you must register your domain.</p>
+<p>As with AuthSub authentication, first-time users of your application must authorize access to their Google data. Typically, your users see some text and a link or button directing them to authenticate (sign in) using their Google Account credentials. After they authenticate, users are directed to a URL where they can use your application to retrieve data from their Google data feed. This process is shown in the following diagram:</p>
+
+<p><img src="/accounts/images/userauthprocess.png" /> </p>
+
+<p>To use OAuth for your web based application, follow this sequence, each of which has a related code example you can use:</p>
+<ol>
+  <li><a href="/gdata/docs/auth/oauth#OAuthRequestToken">Fetch a request token</a>.</li>
+  <li><a href="/gdata/docs/auth/oauth#OAuthAuthorizeToken">Authorize the request token</a>.</li>
+  <li><a href="/gdata/docs/auth/oauth#OAuthAuthorizeToken">Upgrade to an access token</a>.</li>
+  <li><a href="/gdata/docs/auth/oauth#UseAccessToken">Use the access token</a> to interact with the service.</li>
+</ol>
+
+<h3 id="authSub">AuthSub for Web Applications</h3>
+<p>AuthSub is Google's proprietary authentication protocol for web-based applications. Use AuthSub in your web-based application when you can't use OAuth and you must get access to user data that is protected by a Google Account. To learn how AuthSub works and how to set it up for your project, see <a href="/accounts/docs/AuthSub#WorkingAuthSub">Working
+with AuthSub</a> in the <em><a href="/accounts/docs/AuthSub">AuthSub for Web Applications</a></em> guide. </p>
+<p>When users first visit your application, they must authorize access to their Google data. In order to achieve this, your application must first obtain a <em>single-use token</em>, which grants your app access to user data without exposing their login credentials. Typically, your users see some text and a link or button directing them to authenticate (sign in) using their Google Account credentials. After they authenticate, users are directed to a URL where they can use your application to retrieve data from their Google data feed.</p>
+
+<div class="tog-box tog-right">
+<p>To use AuthSub in your web application, first request a single-use token:</p>
+<div class="tog-content">
+<p> Use the
+<code>getRequestUrl()</code> function provided by the Google Data Java client
+library to obtain a single-use token using
+AuthSub authentication.</p>
+
+<pre class="prettyprint">
+import <a href="/gdata/javadoc/com/google/gdata/client/package-summary">com.google.gdata.client</a>.*;
+
+String nextUrl = "http://www.example.com/welcome.jsp";
+String scope = "https://www.google.com/calendar/feeds/";
+boolean secure = false;  // set secure=true to request secure AuthSub tokens
+boolean session = true;
+String authSubUrl = AuthSubUtil.<a href="/gdata/javadoc/com/google/gdata/client/http/AuthSubUtil#getRequestUrl(java.lang.String,%20java.lang.String,%20boolean,%20boolean)">getRequestUrl</a>(nextUrl, scope, secure, session);
+</pre>
+<p>If you want to authenticate users on your Google Apps hosted domain:</p>
+<pre class="prettyprint">
+import <a href="/gdata/javadoc/com/google/gdata/client/package-summary">com.google.gdata.client</a>.*;
+
+String hostedDomain = "example.com";
+String nextUrl = "http://www.example.com/welcome.jsp";
+String scope = "https://www.google.com/calendar/feeds/";
+boolean secure = false;  // set secure=true to request AuthSub tokens
+boolean session = true;
+String authSubUrl = AuthSubUtil.<a href="/gdata/javadoc/com/google/gdata/client/http/AuthSubUtil#getRequestUrl(java.lang.String, java.lang.String, java.lang.String, boolean, boolean)">getRequestUrl</a>(hostedDomain, nextUrl, scope, secure, session);
+</pre>
+<p>The <code>getRequestUrl()</code> method takes several parameters. These parameters are described in detail in the <a href="/accounts/docs/AuthSub#AuthSubRequest">AuthSubRequest</a> documentation.  Once you figure out how to retrieve the single-use token, you can read how to:
+  <ul>
+    <li><a href="/gdata/docs/auth/authsub#request-session-token">Upgrade to a session token</a></li>
+    <li><a href="/gdata/docs/auth/authsub#TokenInfo">Retrieve information about a token</a></li>
+    <li><a href="/gdata/docs/auth/authsub#revoke-token">Revoke a session token</a></li>
+  </ul>
+</p>
+
+</div>
+</div>
+
+
+
+<h4 id="ClientLogin">ClientLogin for Installed Applications</h4>
+
+
+<p>Use <a href="/accounts/docs/AuthForInstalledApps">ClientLogin</a> in your installed application when you can't use OAuth and you must get access to user data that is protected by a Google Account. When your application first runs, it prompts the user for username and password. For subsequent uses, it uses an authentication token to authenticate the user.</p>
+
+<div class="tog-box tog-right">
+<p class="tog-header"><em><strong>View instructions</strong></em></p>
+<div class="tog-content">
+<p>To use <a href="/accounts/docs/AuthForInstalledApps">ClientLogin</a>, invoke the
+<a href="/gdata/javadoc/com/google/gdata/client/GoogleService#setUserCredentials(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)"><code>setUserCredentials()</code></a></code>
+method of <a href="/gdata/javadoc/com/google/gdata/client/docs/DocsService#DocsService(java.lang.String)"><code>CalendarService</code></a> object, which is inherited from <a href="/gdata/javadoc/com/google/gdata/client/GoogleService"><code>GoogleService</code></a>. Specify the email address and password of the user on whose behalf your client is making requests. For example:</p>
+
+<pre class="prettyprint">
+CalendarService client = new <a href="/gdata/javadoc/com/google/gdata/client/calendar/CalendarService#CalendarService(java.lang.String)">CalendarService</a>("yourCo-yourAppName-v1");
+client.<a href="/gdata/javadoc/com/google/gdata/client/GoogleService#setUserCredentials(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">setUserCredentials</a>("example@gmail.com", "pa$$word");
+</pre>
+
+<p class="warning"><strong>Tip</strong>: Once your application has successfully authenticated the user for the first time, store the auth token in your database to recall for later use. You should not prompt for the user's password on every run of your application. See <a href="/gdata/docs/auth/clientlogin#RecallAuthToken">Recalling an auth token</a> for more information.</p>
+
+<p>For more information on using ClientLogin in your Java applications, see <a href="/gdata/docs/auth/clientlogin">Using ClientLogin with the Google Data API Client Libraries</a>.</p>
+</div></div>
+
+    <h4 id="AuthMagicCookie">Magic cookie authentication</h4>
+    <p>The simplest feed URL to use is that of the calendar's read-only so-called "magic cookie" private feed, because that URL doesn't require authentication. The usual procedure for determining that URL  involves using a JavaScript-enabled GUI browser to get the URL manually. If you can't or don't want to use such a browser, then you can instead interact with Calendar using one of the other feed URLs, which require authentication, but which you can construct without using a browser.</p>
+
+    <p>To find your calendar's "magic cookie" feed URL:</p>
+    <ol>
+      <li>In the list of calendars on the left side of the page, find the calendar you want to interact with. You can create a new calendar for this purpose if you want to.</li>
+      <li>Click the arrow button to the right of the calendar. Select "Calendar settings" from the drop-down menu. The Calendar Details page appears.</li>
+
+      <li>Scroll down to the Private Address section. There are two buttons; select the XML button. The feed URL appears.</li>
+      <li>Copy the URL. This is the URL of your calendar's read-only "magic cookie" private feed; it includes a special coded string that lets you read the private feed without having to do authentication. This is the URL you'll use to request a feed from Calendar, so you won't have to do authentication just to view the feed.</li>
+    </ol>
+    <p>The feed URL has the following form:</p>
+    <pre class="prettyprint">https://www.google.com/calendar/feeds/<i>userID</i>/private-<i>magicCookie</i>/basic</pre>
+
+    <p>You can modify this URL in the following ways:</p>
+    <ul>
+      <li>If you want a private feed that requires authentication, convert
+        the "private-{magic-cookie}" part of this path to just "private".</li>
+      <li>If you want the "full" calendar project, change the
+        last component
+        from "basic" to "full" in the URL. Using
+        "basic" returns a basic Atom feed without any extension
+        elements. Using "full" returns a feed that includes all event
+        properties, but comments aren't included inline. Instead, they're
+        specified (in the <code>&lt;gd:feedLink&gt;</code> element)
+        as a link to a separate comment feed.</li>
+
+    </ul>
+    <p>The "basic" form of the feed holds event information that is formatted
+      for reading, more suited to human consumption of the feed. The
+      "full" form of the feed holds structured events that are represented
+      as "Kinds", so they are more suited to computer processing.</p>
+    <p>If you're looking at settings for the user's main calendar, then <code>userID</code> is  the user's email address. If you're looking at settings for another calendar, then <code>userID</code> is a longer and more complicated email address. In either case, <code>magicCookie</code> is a special code that lets you read the private feed without having to do authentication. Here's an example of a feed URL:</p>
+
+    <pre class="prettyprint">https://www.google.com/calendar/feeds/jo@gmail.com/private-08ce2fac8efa42f2a0d04eceb7d68cc9/full</pre>
+    <p>Under some circumstances, you may want to generate a new "magic cookie" URL. (Note that if someone else gets access to that URL, they can view your calendar without authentication.) To do that, click the "Reset Private URLs" link in the Calendar Details page.</p>
+
+    <h2 id="RetrievingCalendars">Retrieving calendar lists</h2>
+    <p>The Calendar Data API provides several ways to access the list of calendars that appear in the Google Calendar web application.  There are three types of calendars in this list: primary, secondary, and imported calendars.  A primary calendar is created for a user when they sign up for a Google Calendar account.  All other calendars created by that user are called secondary calendars.  Imported calendars are calendars that a user subscribes to that someone else has created.</p>
+    <p><a name="RetrievingAllCalendars"></a></p>
+    <h3 id="RetrievingAllCalendars">Retrieving all calendars</h3>
+
+    <p>You can get a list of a user's calendars by sending an authenticated <code>GET</code> request to the <i>allcalendars</i> feed URL:</p>
+    <pre class="prettyprint">https://www.google.com/calendar/feeds/default/allcalendars/full</pre>
+    <p>The result is a feed that includes all primary, secondary, and imported calendars.</p>
+    <p class="note"><strong>Note:</strong> This feed is accessible only using an authentication token, so you cannot use a <a href="#AuthMagicCookie">magic cookie</a> URL to access the feed. For information on authentication, see the earlier <a href="#Auth">Authenticating to the Calendar service</a> section.</p>
+    <p>To request this feed using the Java client library, first instantiate a new <code>CalendarService</code> object and authenticate the user.  Then use the <code>getFeed</code> method to retrieve a <code>CalendarFeed</code> object that contains entries for all of the user's calendars.</p>
+    <pre class="prettyprint">
+// Create a CalenderService and authenticate
+CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+myService.setUserCredentials("jo@gmail.com", "mypassword");
+
+// Send the request and print the response
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/allcalendars/full");
+CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+System.out.println("Your calendars:");
+System.out.println();
+for (int i = 0; i&lt;resultFeed.getEntries().size(); i++) {
+  CalendarEntry entry = resultFeed.getEntries().get(i);
+  System.out.println("\t" + entry.getTitle().getPlainText());
+}
+</pre>
+
+    <h3 id="RetrievingOwnCalendars">Retrieving only calendars that a user owns</h3>
+
+    <p>There is also an <i>owncalendars</i> feed that you can query to retrieve the list of calendars that the authenticated user has <code>owner</code> access to.  The <i>owncalendars</i> feed is located at:</p>
+    <pre class="prettyprint">https://www.google.com/calendar/feeds/default/owncalendars/full</pre>
+    <p>Querying this feed will return a list of calendars that includes the user's primary and secondary calendars, as well as any imported calendars for which the user has been granted ownership.  The feed can be accessed by replacing the URL in the previous example:</p>
+    <pre class="prettyprint">
+// Create a CalenderService and authenticate
+CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+myService.setUserCredentials("jo@gmail.com", "mypassword");
+
+// Send the request and print the response
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/owncalendars/full");
+CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+System.out.println("Calendars you own:");
+System.out.println();
+for (int i = 0; i&lt;resultFeed.getEntries().size(); i++) {
+  CalendarEntry entry = resultFeed.getEntries().get(i);
+  System.out.println("\t" + entry.getTitle().getPlainText());
+}
+</pre>
+
+    <h2 id="ManagingCalendars">Managing Calendars</h2>
+    <p>The <i>owncalendars</i> feed can also be used to create, update, and delete calendars.  Calendars created through the <i>owncalendars</i> feed will be secondary calendars.</p>
+
+    <h3 id="CreatingCalendars">Creating new calendars</h3>
+
+    <p>To create a new calendar, first instantiate a <code>CalendarEntry</code> object and set the appropriate values.  Then call the <code>CalendarService.insert</code> method, specifying the <i>owncalendars</i> feed.  The following example uses an authenticated <code>CalendarService</code> object called <code>myService</code>:</p>
+<pre class="prettyprint">
+// Create the calendar
+CalendarEntry calendar = new CalendarEntry();
+calendar.setTitle(new PlainTextConstruct("Little League Schedule"));
+calendar.setSummary(new PlainTextConstruct("This calendar contains the practice schedule and game times."));
+calendar.setTimeZone(new TimeZoneProperty("America/Los_Angeles"));
+calendar.setHidden(HiddenProperty.FALSE);
+calendar.setColor(new ColorProperty("#2952A3"));
+calendar.addLocation(new Where("","","Oakland"));
+
+// Insert the calendar
+URL postUrl = new URL("https://www.google.com/calendar/feeds/default/owncalendars/full");
+CalendarEntry returnedCalendar = myService.insert(postUrl, calendar);
+</pre>
+    <p class="note"><strong>Note:</strong> The &lt;atom:id&gt; field of the calendar entry should be <code>null</code> because the Google Calendar server will create an id for the entry when it process the request.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h3 id="UpdatingCalendars">Updating existing calendars</h3>
+
+    <p>You can update most information about a user's calendar via the <i>owncalendars</i> feed.  The following example updates the title and color of the first calendar retrieved from the <i>owncalendars</i> feed.</p>
+<pre class="prettyprint">
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/owncalendars/full");
+CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+CalendarEntry calendar = resultFeed.getEntries().get(0);
+calendar.setTitle(new PlainTextConstruct("New title"));
+calendar.setColor(new ColorProperty("#A32929"));
+calendar.setSelected(SelectedProperty.TRUE);
+CalendarEntry returnedCalendar = calendar.update();
+</pre>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h3 id="DeletingCalendars">Deleting calendars</h3>
+    <p>To delete a calendar, simply call the <code>delete</code> method.  The following example attempts to delete all the calendars that are returned in the feed:</p>
+    <pre class="prettyprint">
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/owncalendars/full");
+CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+for (int i = 0; i&lt;resultFeed.getEntries().size(); i++) {
+  CalendarEntry entry = resultFeed.getEntries().get(i);
+  System.out.println("Deleting calendar: " + entry.getTitle().getPlainText());
+  try {
+    entry.delete();
+  } catch (InvalidEntryException e) {
+    System.out.println("\tUnable to delete primary calendar");
+  }
+}
+</pre>
+    <p class="note"><strong>Note:</strong> You can't delete a user's primary calendar, i.e. the calendar with the user's email address in the ID.  If you try to delete a primary calendar you will get an <code>InvalidEntryException</code>.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h2 id="ManagingSubscriptions">Managing subscriptions to calendars</h2>
+    <p>The <i>allcalendars</i> feed can be used to modify the list of imported calendars that a user has subscribed to.  Calendars inserted via the <i>allcalendars</i> feed will be added as imported calendars.</p>
+
+    <h3 id="AddingSubscriptions">Adding new subscriptions</h3>
+
+    <p>To subscribe to an existing calendar, you first need to find the calendar's ID.  The calendar ID is available on the calendar settings page, next to the Calendar Address buttons.  If you're subscribing to a user's primary calendar, the id will just be the user's email address.</p>
+    <p>Once you have the calendar's ID, you can instantiate a <code>CalendarEntry</code> object and use the <code>setId</code> method to specify the calendar to subscribe to.  Then call the <code>CalendarService.insert</code> method, specifying the <i>allcalendars</i> feed.  The following example uses an authenticated <code>CalendarService</code> object called <code>myService</code> to subscribe to the Google Doodles calendar:</p>
+<pre class="prettyprint">
+CalendarEntry calendar = new CalendarEntry();
+calendar.setId("c4o4i7m2lbamc4k26sc2vokh5g%40group.calendar.google.com");
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/allcalendars/full");
+CalendarEntry returnedCalendar = myService.insert(feedUrl, calendar);
+</pre>
+    <p>This invocation of <code>insert</code> will have different results based on the current state of the calendar.  If the subscription doesn't exist, then the calendar is added to the user's list of imported calendars.  If the user has already subscribed to the calendar, then the server will return a <code>409 Conflict</code>.  If the calendar inserted is currently hidden, it will become visible.</p>
+
+    <h3 id="UpdatingSubscriptions">Updating calendar subscriptions</h3>
+
+    <p>You can update the following personalization settings of a calendar using the <i>allcalendars</i> feed:</p>
+    <ul>
+      <li><b>color</b> - the color of the calendar in the UI.</li>
+      <li><b>hidden</b> - whether or not the calendar is shown in the UI.</li>
+      <li><b>selected</b> - whether or not the calendar is selected in the UI.</li>
+    </ul>
+    <p>The personalization settings can be modified with the <i>allcalendars</i> feed even if the user doesn't own the calendar.  However, the title and summary of the calendar can only be updated by an owner of the calendar using the <i>owncalendars</i> feed.  The following example turns all the calendars in the feed green:</p>
+<pre class="prettyprint">
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/allcalendars/full");
+CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+for (int i = 0; i&lt;resultFeed.getEntries().size(); i++) {
+  CalendarEntry calendar = resultFeed.getEntries().get(i);
+  calendar.setColor(new ColorProperty("#0D7813"));
+  CalendarEntry returnedCalendar = calendar.update();
+}
+</pre>
+
+    <h3 id="DeletingSubscriptions">Deleting subscriptions</h3>
+
+    <p>To remove an imported calendar, retrieve the calendar from the <i>allcalendars</i> feed and call the <code>delete</code> method.  The following example removes the subscription to the Google Doodles calendar that was added in a previous example:</p>
+    <pre class="prettyprint">
+String doodleCalendarUrl = "https://www.google.com/calendar/feeds/default/allcalendars/full/c4o4i7m2lbamc4k26sc2vokh5g%40group.calendar.google.com";
+CalendarEntry doodleCalendar = myService.getEntry(new URL(doodleCalendarUrl), CalendarEntry.class);
+doodleCalendar.delete();
+    </pre>
+
+    <h2 id="RetrievingEvents">Retrieving events</h2>
+    <h3 id="RetrievingWithoutQuery">Retrieving events without query parameters</h3>
+    <p>To request a Calendar feed using the Java client library, for a user with email address "jo@gmail.com" and password "mypassword", use the following code:</p>
+    <pre class="prettyprint">// Set up the URL and the object that will handle the connection:
+URL feedUrl = new URL("https://www.google.com/calendar/feeds/jo@gmail.com/private/full");
+CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+myService.setUserCredentials("jo@gmail.com", "mypassword");
+
+// Send the request and receive the response:
+CalendarEventFeed myFeed = myService.getFeed(feedUrl, CalendarEventFeed.class);
+</pre>
+    <p>To request an entire feed, you call the <code><a href="/gdata/javadoc/com/google/gdata/client/Service#getFeed(java.net.URL,%20java.lang.Class)">getFeed</a></code> method, which takes a URL and returns the entire feed found at that URL. We'll show how to send more specific queries later in this document.</p>
+    <p>Like other methods of the <code>CalendarService</code> class, <code>getFeed</code> handles authentication and redirects as necessary.</p>
+
+    <h3 id="RetrievingDateRange">Retrieving events for a specified date range</h3>
+    <p>To view events on your calendar that overlap a particular
+      date range, use the following Java code. You'll have to replace
+      the credentials in this example with the user's email address and
+      password.</p>
+    <pre class="prettyprint">URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/private/full");
+
+CalendarQuery myQuery = new CalendarQuery(feedUrl);
+myQuery.setMinimumStartTime(DateTime.parseDateTime("2006-03-16T00:00:00"));<br />myQuery.setMaximumStartTime(DateTime.parseDateTime("2006-03-24T23:59:59"));
+
+CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+myService.setUserCredentials("jo@gmail.com", "mypassword");
+
+// Send the request and receive the response:
+CalendarEventFeed resultFeed = myService.query(myQuery, Feed.class);</pre>
+
+    <p>The above code creates a new CalendarQuery, which is a subclass of <a href="/gdata/javadoc/com/google/gdata/client/Query">Query</a> (the class corresponding to a standard Data API query) that adds getters and setters for the <code>start-min</code> and <code>start-max</code> Calendar-specific query parameters. Then it sets the minimum and maximum start times; then it creates a <code>CalendarService</code>, uses the <code><a href="/gdata/javadoc/com/google/gdata/client/GoogleService#setUserCredentials(java.lang.String,%20java.lang.String)">setUserCredentials</a></code> method to set the username and password, and calls the <code><a href="/gdata/javadoc/com/google/gdata/client/Service#query(com.google.gdata.client.Query,%20java.lang.Class)">query</a></code> method to send the query and receive the response.</p>
+
+<h3 id="RetrievingWithQuery">Retrieving events matching a full text query</h3>
+    <p>To retrieve the first match in a full-text search, use the following code:</p>
+    <pre class="prettyprint">Query myQuery = new Query(feedUrl);
+myQuery.setFullTextQuery("Tennis");
+CalendarEventFeed myResultsFeed = myService.query(myQuery,
+    CalendarEventFeed.class);
+if (myResultsFeed.getEntries().size() &gt; 0) {
+  CalendarEventEntry firstMatchEntry = (CalendarEventEntry)
+      myResultsFeed.getEntries().get(0);
+  String myEntryTitle = firstMatchEntry.getTitle().getPlainText();
+}</pre>
+    <p>This example starts by constructing a <code><a href="/gdata/javadoc/com/google/gdata/client/Query">Query</a></code> object, which consists mostly of a URL plus associated query parameters. Each of the standard Data API query parameters has a setter method. You can also set custom query parameters for a particular service, using the <code><a href="/gdata/javadoc/com/google/gdata/client/Query#addCustomParameter(com.google.gdata.client.Query.CustomParameter)">addCustomParameter</a></code> method.</p>
+    <p>After constructing the <code>Query</code>, we pass it to the service's <code><a href="/gdata/javadoc/com/google/gdata/client/Service#query(com.google.gdata.client.Query,%20java.lang.Class)">query</a></code> method, which returns a feed containing the query results. An alternative approach would be to construct a URL yourself (by appending query parameters to the feed URL) and then call the <code>getFeed</code> method, but the <code>query</code> method provides a useful layer of abstraction so that you don't have to construct the URL yourself.</p>
+    <p>The feed's <code><a href="/gdata/javadoc/com/google/gdata/data/BaseFeed#getEntries()">getEntries</a></code> method returns a list of the entries in the feed; <code>getEntries().size</code> returns the number of entries in the feed.</p>
+    <p>In this case, if the query returned any results, we assign the first matching result to an <code>CalendarEventEntry</code> object. Then we use the <code>CalendarEventEntry</code> class's <code><a href="/gdata/javadoc/com/google/gdata/data/BaseEntry#getTitle()">getTitle</a>().getPlainText</code> method to retrieve the entry's title and convert it to text.</p>
+    <p>The above code is equivalent to sending <code>GET https://www.google.com/calendar/feeds/jo@gmail.com/private/full?q=Tennis</code> to Calendar.</p>
+
+    <h2 id="CreatingEvents">Creating events</h2>
+    <p>The Calendar Data API allows you to create two types of events: single-occurrence events and recurring events, which are set up to repeat on a predetermined schedule.</p>
+    <h3 id="CreatingSingle">Creating single-occurrence events</h3>
+    <p>To insert a single-occurrence event into a Calendar feed, you might use the following code:</p>
+    <pre class="prettyprint">URL postUrl =
+  new URL("https://www.google.com/calendar/feeds/jo@gmail.com/private/full");
+CalendarEventEntry myEntry = new CalendarEventEntry();
+
+myEntry.setTitle(new PlainTextConstruct("Tennis with Beth"));
+myEntry.setContent(new PlainTextConstruct("Meet for a quick lesson."));
+
+DateTime startTime = DateTime.parseDateTime("2006-04-17T15:00:00-08:00");
+DateTime endTime = DateTime.parseDateTime("2006-04-17T17:00:00-08:00");
+When eventTimes = new When();
+eventTimes.setStartTime(startTime);
+eventTimes.setEndTime(endTime);
+myEntry.addTime(eventTimes);
+
+// Send the request and receive the response:
+CalendarEventEntry insertedEntry = myService.insert(postUrl, myEntry);</pre>
+
+    <p>After setting the URL, we  construct a <code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarEventEntry">CalendarEventEntry</a></code> object; <code>CalendarEventEntry</code> is derived from the abstract base class <code><a href="/gdata/javadoc/com/google/gdata/data/BaseEntry">BaseEntry</a></code>, which is also the parent class for the <code><a href="/gdata/javadoc/com/google/gdata/data/Entry">Entry</a></code> class, which represents an <code>&lt;atom:entry&gt;</code> element.</p>
+
+    <p>The <code>CalendarEventEntry</code> class represents the Google Calendar implementation of the Google Data API Event kind; for more information, see the <a href="/gdata/docs/2.0/elements">Kinds document</a>.  For services other than Calendar, you might assign the returned entry to an <code>Entry</code> object rather than a <code>CalendarEventEntry</code> object.</p>
+    <p>The entry title is a <code><a href="/gdata/javadoc/com/google/gdata/data/TextConstruct">TextConstruct</a></code>, a class that holds text in various forms (plain text, HTML, or XHTML). The entry content is represented by a <code><a href="/gdata/javadoc/com/google/gdata/data/Content">Content</a></code> object, a class that can hold either plain text or other forms of content, including XML and binary data. (But the <code><a href="/gdata/javadoc/com/google/gdata/data/BaseEntry#setContent(com.google.gdata.data.TextConstruct)">setContent</a></code> method can also accept a <code>TextConstruct</code>.)</p>
+    <p>We're using the same <code>CalendarService</code> object that we created in the previous example. In this case, the method to call is <code><a href="/gdata/javadoc/com/google/gdata/client/GoogleService#insert(java.net.URL,%20E)">insert</a></code>, which sends an item to the specified insertion URL.</p>
+    <p>The service returns the newly created entry, which may contain additional server-generated elements, such as an edit URL for the entry.</p>
+    <p>HTTP status codes indicating failure are thrown as exceptions.</p>
+    <p>The above code is equivalent to sending <code>POST https://www.google.com/calendar/feeds/jo@gmail.com/private/full</code> (with proper authentication) and providing an entry in the form of an Event kind.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h3 id="CreatingQuickAdd">Creating quick add events</h3>
+
+    <p>To create an event using Google Calendar's <a href="http://www.google.com/support/calendar/bin/answer.py?answer=36604">quick add</a> feature, set the entry's content to the quick add string you'd like to use.  Then call <code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarEventEntry#setQuickAdd(boolean)">setQuickAdd</a></code> on the new entry, as follows:</p>
+    <pre class="prettyprint">CalendarEventEntry myEntry = new CalendarEventEntry();
+myEntry.setContent(new PlainTextConstruct("Tennis with John April 11 3pm-3:30pm"));
+myEntry.setQuickAdd(true);
+
+// Send the request and receive the response:
+CalendarEventEntry insertedEntry = myService.insert(postUrl, myEntry);</pre>
+    <p>Notice that it's not necessary to call <code>setTitle</code> when creating an event with quick add; the title is parsed automatically (in this case, "Tennis with John").</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h3 id="CreatingGadgets">Creating Calendar Event Gadgets</h3>
+
+    <p>You can also insert Calendar Event Gadgets events using the Java Client Library. Calendar Event Gadgets, formerly called web content, can contain images, HTML pages, or gadgets.</p>
+    <p>To create a simple Calendar Event Gadget that displays and image first instantiate a new <code><a href="/gdata/javadoc/com/google/gdata/data/calendar/WebContent">WebContent</a></code> object and set its properties, as follows:</p>
+    <pre class="prettyprint">
+WebContent wc = new WebContent();
+
+wc.setTitle("World Cup");
+wc.setType("image/gif");
+wc.setUrl("http://www.google.com/logos/worldcup06.gif");
+wc.setIcon("http://www.google.com/calendar/images/google-holiday.gif");
+wc.setWidth("276");
+wc.setHeight("120");</pre>
+    <p>This code sets up a <code>WebContent</code> object to display the <a href="http://www.google.com/logos/worldcup06.gif">World Cup doodle</a> (dimensions 276x120, and located at <code>http://www.google.com/logos/worldcup06.gif</code>). The icon at <code>http://www.google.com/calendar/images/google-holiday.gif</code> will be used to display the Calendar Event Gadget in the Calendar user interface before it is clicked.</p>
+    <p>To create a Calendar Event Gadget that displays a gadget, create a <code><a href="/gdata/javadoc/com/google/gdata/data/calendar/WebContent">WebContent</a></code> object again, but this time the type should be <code>application/x-google-gadgets+xml</code>.  You'll also need to get the gadget's URL from the <a href="http://www.google.com/ig/directory">iGoogle Directory</a>. This example configures a Calendar Event Gadget to display the DateTime gadget and specifies the appropriate user preferences.</p>
+    <pre class="prettyprint">
+WebContent wc = new WebContent();
+
+wc.setTitle("DateTime Gadget (a classic!)");
+wc.setType("application/x-google-gadgets+xml");
+wc.setUrl("http://google.com/ig/modules/datetime.xml");
+wc.setIcon("http://www.google.com/calendar/images/google-holiday.gif");
+wc.setWidth("300");
+wc.setHeight("136");
+
+Map&lt;String, String&gt; prefs = new HashMap&lt;String,String&gt;();
+prefs.put("color", "green");
+wc.setGadgetPrefs(prefs);
+</pre>
+    <p>Once you've created the <code>WebContent</code> object, call <code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarEventEntry#setWebContent(com.google.gdata.data.calendar.WebContent)">setWebContent</a></code> to associate the WebContent object with your new entry, and insert the event as follows:</p>
+    <pre class="prettyprint">myEntry.setWebContent(wc);
+CalendarEventEntry insertedEntry = myService.insert(postUrl, myEntry);</pre>
+    <p>It's also possible to add web content to an existing event, as follows:</p>
+    <pre class="prettyprint">entry.setWebContent(wc);
+entry.update();</pre>
+    <p>This inserts the Calendar Event Gadget on the current date.  Please see the section on <a href="#CreatingSingle">Creating single-occurrence events</a> for information on how to set the <code>start_time</code> property to choose the date when the Calendar Event Gadget should appear on the calendar.</p>
+    <p class="note"><strong>Note:</strong> For more information on Calendar Event Gadgets, check out the documentation <a href="/google-apps/calendar/gadgets/">here</a>.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h3 id="CreatingRecurring">Creating recurring events</h3>
+
+    <p>To create a recurring event, use code similar to the following:</p>
+    <pre class="prettyprint">String recurData = "DTSTART;VALUE=DATE:20070501\r\n"
+        + "DTEND;VALUE=DATE:20070502\r\n"
+        + "RRULE:FREQ=WEEKLY;BYDAY=Tu;UNTIL=20070904\r\n";
+
+CalendarEventEntry myEntry = new CalendarEventEntry();
+Recurrence recur = new Recurrence();
+recur.setValue(recurData);
+myEntry.setRecurrence(recur);</pre>
+    <p>In this example, we first create a string containing an iCalendar (<a href="http://tools.ietf.org/html/rfc2445">RFC 2445</a>) specification of the desired event recurrence.  Here, the event occurs first on 2007/05/01 and repeats weekly on Tuesdays until 2007/09/04.  Next, a new <code>Recurrence</code> object is constructed and its value is set to the recurrence string.  Finally, a new <code>CalendarEventEntry</code> is created and the recurrence added with <code>setRecurrence()</code>.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h2 id="UpdatingEvents">Updating events</h2>
+    <p>To update an existing item, use the following code. In this example, we're changing the previously retrieved entry's title from its old text ("Tennis with Beth") to "Important meeting."</p>
+    <pre class="prettyprint">retrievedEntry.setTitle(new PlainTextConstruct("Important meeting"));
+URL editUrl = new URL(retrievedEntry.getEditLink().getHref());
+CalendarEventEntry updatedEntry = (CalendarEventEntry)myService.update(editUrl, myEntry);
+</pre>
+    <p>First we set a new title for the entry we fetched earlier. Then we get the edit URL for the entry, using the <code><a href="/gdata/javadoc/com/google/gdata/data/BaseEntry#getEditLink()">getEditLink</a></code> method. Then we call the service's <code><a href="/gdata/javadoc/com/google/gdata/client/GoogleService#update(java.net.URL,%20E)">update</a></code> method to send the updated entry.</p>
+    <p>The service returns the updated entry, including a new URL for this entry's new version. (For more information on entry versions, see the <a href="/gdata/docs/2.0/reference#Optimistic-concurrency">Optimistic concurrency</a> section of the <a href="/gdata/docs/2.0/reference">Google Data API Protocol reference</a>.)</p>
+    <p>The above code is roughly equivalent to sending <code>PUT https://www.google.com/calendar/feeds/jo@gmail.com/private/full/<i>entryID</i></code> to the service, along with the new entry (in Atom format) to replace the original entry.</p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h2 id="DeletingEvents">Deleting events</h2>
+    <p>To delete an existing item, use the following code:</p>
+    <pre class="prettyprint">updatedEntry.delete();
+</pre>
+    <p>The above code is roughly equivalent to sending <code>DELETE https://www.google.com/calendar/feeds/jo@gmail.com/private/full/<i>entryID</i></code> to the service.<a name="SharingACalendar"></a></p>
+    <p class="note"><strong>Note:</strong> If making multiple creations/updates/deletions at the same time, please consider using <a href="#batch">Batch Request</a> as it increases performance.</p>
+
+    <h2>Sharing calendars</h2>
+
+    <p>This section describes how to retrieve and modify Calendar access control lists (ACLs) with the Google Data API Java client library. An access control list identifies the set of users with whom a calendar is shared, and the access permissions of each user (read-only access, full access, etc.) For more information, see <a href="developers_guide_protocol.html#SharingACalendar">the ACL topic</a> of the Protocol section.</p>
+    <h3 id="RetrieveAcl">Retrieving access control lists</h3>
+    <p>To retrieve and print the access control lists of all of your calendars, use the following code. Here <code>service</code> is an authenticated <code>CalendarService</code> object.</p>
+    <pre class="prettyprint">CalendarFeed calendarFeed =
+    service.getFeed(new URL("https://www.google.com/calendar/feeds/default"), CalendarFeed.class);
+
+for (CalendarEntry calEntry : calendarFeed.getEntries()) {
+  System.out.println("Calendar: " + calEntry.getTitle().getPlainText());
+  Link link = calEntry.getLink(AclNamespace.LINK_REL_ACCESS_CONTROL_LIST,
+      Link.Type.ATOM);
+
+  // For each calendar, retrieve its ACL feed.
+  AclFeed aclFeed = service.getFeed(new URL(link.getHref()), AclFeed.class);
+  for(AclEntry aclEntry : aclFeed.getEntries()) {
+    System.out.println("\t\tScope: Type=" + aclEntry.getScope().getType() +
+        " (" + aclEntry.getScope().getValue() + ")");
+    System.out.println("\t\tRole: " + aclEntry.getRole().getValue());
+  }
+}</pre>
+    <p>After accessing the "meta-feed" to <a href="#RetrievingCalendars">retrieve a list of all calendars</a>, we extract the ACL link for each calendar and retrieve that feed. These links have the form <code>https://www.google.com/calendar/feeds/&lt;userId&gt;/acl/full</code>.</p>
+    <p>We then print each entry in the feed. An <code><a href="/gdata/javadoc/com/google/gdata/data/acl/AclEntry">AclEntry</a></code> consists of a <i>scope</i>, which defines a user with access to this calendar, and a <i>role</i>, which defines how much access he or she has. Valid roles are:</p>
+    <ul>
+      <li><code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarAclRole#FREEBUSY">CalendarAclRole.FREEBUSY</a></code> (this user can only see free/busy information);</li>
+      <li><code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarAclRole#READ">CalendarAclRole.READ</a></code> (this user can see all event details);</li>
+      <li><code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarAclRole#EDITOR">CalendarAclRole.EDITOR</a></code> (this user can make changes to events);</li>
+      <li><code><a href="/gdata/javadoc/com/google/gdata/data/calendar/CalendarAclRole#OWNER">CalendarAclRole.OWNER</a></code> (this user can make changes <i>and</i> manage sharing).</li>
+    </ul>
+    <p class="note"><strong>Note</strong>: Google Data ACLs define scopes that encompass more than one user, though the examples here only use <code>AclScope.Type.USER</code> for simplicity.  Specifically, <code>AclScope.Type.DOMAIN</code> (available only in Google Apps) indicates that an access rule applies to all users with email addresses in the domain, while <code>AclScope.Type.DEFAULT</code> specifies an access rule that applies to all users. For more information, see the <a href="reference.html#gacl_reference">GAcl namespace element reference</a>.</p>
+
+    <h3 id="AddAcl">Adding a user to an access control list</h3>
+    <p>To add a user to a calendar's access control list, you might do the following:</p>
+    <pre class="prettyprint">AclEntry entry = new AclEntry();
+entry.setScope(new AclScope(AclScope.Type.USER, "jdoe@gmail.com"));
+entry.setRole(CalendarAclRole.READ);
+
+URL aclUrl =
+  new URL("https://www.google.com/calendar/feeds/jo@gmail.com/acl/full");
+
+AclEntry insertedEntry = service.insert(aclUrl, entry);</pre>
+    <p>This code allows <code>jdoe@gmail.com</code> to have read-only access to <code>jo@gmail.com</code>'s calendar. Note that if an attempt is made to add an entry with a scope whose type and value match another entry already in the access control list, the operation will fail with error code 409 (Conflict).</p>
+
+    <h3 id="UpdateAcl">Updating a user's role in an ACL</h3>
+    <p>In order to change a user's access level to a calendar, update the <code>AclEntry</code> with the following code:</p>
+    <pre class="prettyprint">entry.setRole(CalendarAclRole.OWNER);
+AclEntry updatedEntry = entry.update();</pre>
+    <p>This code changes <code>entry</code> to a rule indicating that the user defined in its scope has full (owner) access privileges.</p>
+    <p class="note"><strong>Note</strong>: It is not possible to modify the scope of an <code>AclEntry</code> when updating it; only the role can be modified. An attempt to update the scope will result in a 403 (Forbidden) error.</p>
+
+    <h3 id="DeleteAcl">Removing a user from an access control list</h3>
+    <p>To remove a user from a calendar's access control list, do the following:</p>
+    <pre class="prettyprint">entry.delete();</pre>
+    <p>Here <code>entry</code> is an <code>AclEntry</code> that was already defined as a variable or retrieved from an <code><a href="/gdata/javadoc/com/google/gdata/data/acl/AclFeed">AclFeed</a></code>. Executing this code will cause the user defined in <code>entry</code>'s scope to lose access to this calendar.</p>
+
+    <h2 id="AdditionalOps">Additional operations</h2>
+    <p>This section describes other Calendar operations you can perform with the Google Data API Java client library.</p>
+    <h3 id="ExtendedProps">Extended properties</h3>
+    <p>You can add extended properties (arbitrary name-value pairs) to Calendar events.  These can be used to store application-specific IDs or other small amounts of information your application needs when interacting with a Google Calendar.  The name of a property can contain up to 47 characters, and the value can contain up to 1024 characters.  Extended properties are only accessible through the API &ndash; they do not appear in the Calendar user interface.</p>
+    <p>In this example, we are adding an extended property <code>id</code> with value <code>1234</code> to the Calendar entry <code>myEntry</code>. It is recommended that you specify the complete schema URL to avoid namespace collisions with other applications that use the same property name:</p>
+    <pre class="prettyprint">ExtendedProperty property = new ExtendedProperty();
+property.setName("http://www.example.com/schemas/2005#mycal.id");
+property.setValue("1234");
+
+myEntry.addExtendedProperty(property);</pre>
+<p class="note"><strong>Note:</strong> Extended properties are not indexed so you can't query based on their keys or values.</p>
+    <h3 id="Reminders">Reminders and Notifications</h3>
+    <p>To set a reminder for a calendar event, you can do the following:</p>
+    <pre class="prettyprint">
+int reminderMinutes = 15;
+Method methodType = Method.EMAIL;
+
+Reminder reminder = new Reminder();
+reminder.setMinutes(reminderMinutes);
+reminder.setMethod(methodType);
+
+entry.getReminder().add(reminder);
+entry.update();
+</pre>
+    <p>This code sets a 15-minute email reminder for the event <code>myEntry</code>.  You can include up to five reminders per event.  The available methods are <code>email</code>, <code>alert</code> (a popup in the browser), <code>sms</code> (a text message), or <code>none</code>.
+    By default every event created through the Google Calendar interface is associated with a SMS reminder, even if SMS notifications are not enabled in your Google Calendar account setting.
+    </p>
+    <p>
+    For an event to inherit the default reminder setting of your Google Calendar account, add a reminder with the method set to <code>Method.ALL</code>.
+    </p>
+    <p>
+    If you want to ensure that no reminders are sent, add a reminder with the method set to <code>Method.NONE</code>.</p>
+    <p class="note"><strong>Note:</strong> The value of the <code>minutes</code> attribute must correspond to one of the reminder time increments available in the Google Calendar web application.</p>
+    <h2 id="ImprovingPerformance">Improving performance</h2>
+    <p>Some special features are available to help you optimize your Calendar Data API requests.</p>
+    <h2 id="PartialResponse">Requesting a partial response  <span class="exp-feat">(Experimental)</span></h2>
+<p>When you use  the Java Client Library to work with the Calendar Data API, you are actually making underlying requests that transfer XML data using the Google Data Protocol. By default,  requests that return data transfer the full representation of the target resource. Yet receiving full responses to requests can consume a lot of network and CPU resources, especially when you're making many requests. To reduce resource use, you can  request that the server return only certain fields.</p>
+<p>To request a partial response instead of a full response, use the <code>CalendarQuery.setFields</code> method. For more information, including the field-specification syntax, see the <a href="/gdata/docs/2.0/reference#PartialResponse">partial-response documentation</a>.</p>
+<p>For example, the following code retrieves attendee status for the user's next twenty upcoming events.</p>
+<pre class="prettyprint">
+// Create a CalenderService and authenticate.
+CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+myService.setUserCredentials("jo@gmail.com", "mypassword");
+
+// Create a partial query to retrieve info for the next twenty events.
+String eventFeedUrl = "https://www.google.com/calendar/feeds/jo@gmail.com/private/full";
+CalendarQuery query = new CalendarQuery(new URL(eventFeedUrl));
+// Selection criteria to fetch only the attendee status of the specified user for each retrieved event.
+query.setFields("entry(@gd:etag,title,link[@rel='edit'],gd:who[@email='jo@gmail.com'])");
+query.setMinimumStartTime(DateTime.now());
+query.setMaxResults(20);
+
+// Send query; using query results, print Jo's attendee status.
+CalendarEventFeed partialEvents = myService.query(query, CalendarEventFeed.class);
+for (CalendarEventEntry partialEvent : partialEvents.getEntries()) {
+  // The participant list will contain exactly one attendee matching the
+  // above partial query selection criteria.
+  String myStatus = partialEvent.getParticipants().get(0).getAttendeeStatus();
+  System.out.println(partialEvent.getTitle().getPlainText() + ": "
+       + (myStatus != null ? myStatus : "no status"));
+}
+</pre>
+<p class="note"><b>Note:</b> The fields you specify with the <code>CalendarQuery.setFields</code> method are expressed in terms of the Google Data Protocol's AtomPub XML representation for the Calendar Data API. For more information about these fields,  please see the schema reference documents: <a href="http://code.google.com/apis/calendar/data/2.0/schema/calendars_atom.rnc ">Calendar List Feed</a>, <a href="/google-apps/calendar/v2/schema/comments_atom.rnc">Calendar Event Comments Feed</a>, <a href="/google-apps/calendar/v2/schema/event_atom.rnc">Calendar Events Feed</a>. <br />
+  <br />
+  For additional background on the Atom representation of the Calendar Data API, see the <a href="developers_guide_protocol.html">protocol</a> and the <a href="reference.html">reference</a> documentation.</p>
+    <h2 id="PartialUpdate">Making a partial update  <span class="exp-feat">(Experimental)</span></h2>
+<p>When you change a field in a local copy of an entry, you can send the server just the updated fields, rather than sending the entire updated entry. For more information, see the <a href="/gdata/docs/2.0/reference#PartialUpdate">partial update documentation</a>.</p>
+<p>The following code shows how to accept a calendar event by sending a partial update for an existing Calendar event. In this example we are updating the <code>attendeeStatus</code> for one of the events retrieved using partial response.</p>
+<pre class="prettyprint">
+// Set status to accepted.
+retrievedPartialEvent.getParticipants().get(0).setAttendeeStatus(Who.AttendeeStatus.EVENT_ACCEPTED);
+// Specify which fields to update.
+String fieldsToUpdate = "gd:who[@email='jo@gmail.com']";
+// Send the changes.
+URL editUrl = new URL(retrievedPartialEvent.getEditLink().getHref());
+CalendarEventEntry updatedEvent = myService.patch(editUrl, fieldsToUpdate, retrievedPartialEvent);
+</pre>
+<h2 id="batch">Performing multiple operations with a batch request</h2>
+<p>If you're performing a lot of operations, the time it takes to send and and receive all those HTTP messages can really add up, making your app slow and unresponsive.  With batch requests you can have the server perform multiple operations with a single HTTP request.  The basic idea is that you create a <code>CalendarEventFeed</code> object and add an entry for each operation you want to perform.  The following code snippet builds and submits a batch request that contains four operations, one each for creating, querying, updating, and deleting an event, but you can use any combination of operations that you want.  The snippet also shows how to check the batch response to make sure the operations were successful.  Note that the <code>service</code> object is an authenticated instance of the <code>CalendarService</code> class.</p>
+<p>To compile the example into your own code, you'll need to add the following import statement:</p>
+<pre class="prettyprint lang-java">import com.google.gdata.data.batch.*;</pre>
+<pre class="prettyprint">
+// Get some events to operate on.
+URL defaultEventFeedUrl = new URL(&quot;https://www.google.com/calendar/feeds/default/private/full&quot;);
+CalendarEventFeed feed = service.getFeed(defaultEventFeedUrl, CalendarEventFeed.class);
+
+// Create an batch entry to insert a new event.
+CalendarEventEntry toInsert = new CalendarEventEntry();
+toInsert.setTitle(new PlainTextConstruct(&quot;first batch event&quot;));
+BatchUtils.setBatchId(toInsert, &quot;1&quot;);
+BatchUtils.setBatchOperationType(toInsert, BatchOperationType.INSERT);
+
+// Create an batch entry to query an event.
+CalendarEventEntry toQuery = feed.getEntries().get(0);
+BatchUtils.setBatchId(toQuery, &quot;2&quot;);
+BatchUtils.setBatchOperationType(toQuery, BatchOperationType.QUERY);
+
+// Create an batch entry to update an existing event.
+CalendarEventEntry toUpdate = feed.getEntries().get(1);
+toUpdate.setTitle(new PlainTextConstruct(&quot;updated via batch&quot;));
+BatchUtils.setBatchId(toUpdate, &quot;3&quot;);
+BatchUtils.setBatchOperationType(toUpdate, BatchOperationType.UPDATE);
+
+// Create an batch entry to delete an existing event.
+CalendarEventEntry toDelete = feed.getEntries().get(2);
+BatchUtils.setBatchId(toDelete, &quot;4&quot;);
+BatchUtils.setBatchOperationType(toDelete, BatchOperationType.DELETE);
+
+// Add the entries to a new feed.
+CalendarEventFeed batchRequest = new CalendarEventFeed();
+batchRequest.getEntries().add(toInsert);
+batchRequest.getEntries().add(toQuery);
+batchRequest.getEntries().add(toUpdate);
+batchRequest.getEntries().add(toDelete);
+
+// Get the batch link URL and send the batch request there.
+Link batchLink = feed.getLink(Link.Rel.FEED_BATCH, Link.Type.ATOM);
+CalendarEventFeed batchResponse = service.batch(new URL(batchLink.getHref()), batchRequest);
+
+// Ensure that all the operations were successful.
+boolean isSuccess = true;
+for (CalendarEventEntry entry : batchResponse.getEntries()) {
+  String batchId = BatchUtils.getBatchId(entry);
+  if (!BatchUtils.isSuccess(entry)) {
+    isSuccess = false;
+    BatchStatus status = BatchUtils.getBatchStatus(entry);
+    System.out.println(&quot;\n&quot; + batchId + &quot; failed (&quot; + status.getReason() + &quot;) &quot; + status.getContent());
+  }
+}
+if (isSuccess) {
+  System.out.println(&quot;Successfully deleted all events via batch request.&quot;);
+}
+</pre>
+<p>When working with batch requests, the size of the request must be under a megabyte and it's best to limit batches to 50-100 operations at a time.  You can find more information about batch operations in the <a href="/gdata/docs/batch">Google Data API Batch Processing</a> documentation.</p>
+<p></p>
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+
+
+<div itemprop="datePublished" content="2012-12-20T13:07:20.999430" id="gc-content-last-updated">Last updated December 20, 2012.</div>
+
+</div>
+
+
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+
+      
+      
+      <footer id="gc-footer">
+        <div id="gc-copyright">
+          <a href="/">
+            <img id="developers-logo-footer" src="/_static/images/developers-logo-footer.png" alt="Google Developers logo" style="vertical-align: center; float: left"/>
+          </a>
+          <ul>
+            <li><a href="http://www.google.com/">Google</a></li>
+            <li><a href="/readme/terms">Terms of Service</a></li>
+            <li><a href="http://www.google.com/intl/en/privacy/">Privacy Policy</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a class="google-feedback" data-p="81425" data-b="Documentation"  data-v="devsite-20130410-rc04.366586502223178962" href="">Report a bug</a></li>
+          </ul>
+        </div>
+        
+        <div id="gc-language">
+          <ul>
+            <li>
+              <form id="setlang" action="/i18n/setlang/" method="post">
+                <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='26b02099131a0fd3ab847c1832d416af' /></div>
+                <select id="footer_language" name="language">
+                  
+                  
+                  <option
+                     value="ar"
+                     >
+                    العربيّة
+                  </option>
+                  
+                  <option
+                     value="bg"
+                     >
+                    български
+                  </option>
+                  
+                  <option
+                     value="ca"
+                     >
+                    català
+                  </option>
+                  
+                  <option
+                     value="zh-cn"
+                     >
+                    简体中文
+                  </option>
+                  
+                  <option
+                     value="zh-tw"
+                     >
+                    繁體中文
+                  </option>
+                  
+                  <option
+                     value="hr"
+                     >
+                    Hrvatski
+                  </option>
+                  
+                  <option
+                     value="cs"
+                     >
+                    česky
+                  </option>
+                  
+                  <option
+                     value="da"
+                     >
+                    Dansk
+                  </option>
+                  
+                  <option
+                     value="nl"
+                     >
+                    Nederlands
+                  </option>
+                  
+                  <option
+                     value="en"
+                      selected="selected" >
+                    English
+                  </option>
+                  
+                  <option
+                     value="fa"
+                     >
+                    فارسی
+                  </option>
+                  
+                  <option
+                     value="fi"
+                     >
+                    suomi
+                  </option>
+                  
+                  <option
+                     value="fr"
+                     >
+                    Français
+                  </option>
+                  
+                  <option
+                     value="de"
+                     >
+                    Deutsch
+                  </option>
+                  
+                  <option
+                     value="el"
+                     >
+                    Ελληνικά
+                  </option>
+                  
+                  <option
+                     value="he"
+                     >
+                    עברית
+                  </option>
+                  
+                  <option
+                     value="hi"
+                     >
+                    Hindi
+                  </option>
+                  
+                  <option
+                     value="hu"
+                     >
+                    Magyar
+                  </option>
+                  
+                  <option
+                     value="id"
+                     >
+                    Bahasa Indonesia
+                  </option>
+                  
+                  <option
+                     value="it"
+                     >
+                    italiano
+                  </option>
+                  
+                  <option
+                     value="ja"
+                     >
+                    日本語
+                  </option>
+                  
+                  <option
+                     value="ko"
+                     >
+                    한국어
+                  </option>
+                  
+                  <option
+                     value="lv"
+                     >
+                    latviešu
+                  </option>
+                  
+                  <option
+                     value="lt"
+                     >
+                    Lithuanian
+                  </option>
+                  
+                  <option
+                     value="nb"
+                     >
+                    Norsk (bokmål)
+                  </option>
+                  
+                  <option
+                     value="nn"
+                     >
+                    Norsk (nynorsk)
+                  </option>
+                  
+                  <option
+                     value="pl"
+                     >
+                    polski
+                  </option>
+                  
+                  <option
+                     value="pt-br"
+                     >
+                    Português Brasileiro
+                  </option>
+                  
+                  <option
+                     value="pt"
+                     >
+                    Português
+                  </option>
+                  
+                  <option
+                     value="ro"
+                     >
+                    Română
+                  </option>
+                  
+                  <option
+                     value="ru"
+                     >
+                    Русский
+                  </option>
+                  
+                  <option
+                     value="sr"
+                     >
+                    српски
+                  </option>
+                  
+                  <option
+                     value="sk"
+                     >
+                    slovenský
+                  </option>
+                  
+                  <option
+                     value="sl"
+                     >
+                    Slovenščina
+                  </option>
+                  
+                  <option
+                     value="es"
+                     >
+                    español
+                  </option>
+                  
+                  <option
+                     value="sv"
+                     >
+                    Svenska
+                  </option>
+                  
+                  <option
+                     value="th"
+                     >
+                    Thai
+                  </option>
+                  
+                  <option
+                     value="tr"
+                     >
+                    Türkçe
+                  </option>
+                  
+                  <option
+                     value="uk"
+                     >
+                    Українська
+                  </option>
+                  
+                  <option
+                     value="vi"
+                     >
+                    Vietnamese
+                  </option>
+                  
+                </select>
+              </form>
+            </li>
+          </ul>
+        </div>
+        
+      </footer>
+      
+      
+    </div>
+    <div id="needAuth" class="msgDialogContent">
+      
+      <h1>Authentication required</h1>
+      
+      <div>
+        You need to be signed in with <a href='http://www.google.com/+'>Google+</a> to do that.
+      </div>
+      <button>Sign in</button>
+      <button>Cancel</button>
+    </div>
+    <div id="signingIn" class="msgDialogContent">
+      
+      <h1>Signing you in...</h1>
+      <div>
+        
+        Google Developers needs your permission to do that.
+      </div>
+      
+      <button>Try again</button>
+      
+      <button>Cancel</button>
+    </div>
+    <script src="/_static/js/script_foot.js"></script>
+    <script>
+      (function($) {
+        devsite.devsite.Init($, null, '');
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+      
+    </script>
+    <!-- Google Code for PXL - Developers - Codesite - HP - 90d Remarketing List -->
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if ($.browser.msie) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+
+    
+
+    <script>
+      
+      google.load('visualization', '1', {packages: ['table']});
+    </script>
+
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    // Render any carousels on the page
+    $('.carousel').carousel();
+    // Render any feed widgets on the page
+    
+    $('.feed').rss();
+    $('.feed-plain').rss();
+    // Render any OSS widgets on the page.
+    $('.oss').oss();
+    });
+</script>
+
+<script type="text/javascript" defer>
+
+
+$(document).ready(function() {
+    contentTimer.name = 'content';
+    contentTimer.tick('ol');
+    window.jstiming.report(contentTimer);
+
+    // Boilerplate javascript to enable the plusone button
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+});
+</script>
+
+
+
+
+
+  </body>
+
+  
+</html>

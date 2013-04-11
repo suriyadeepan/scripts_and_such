@@ -1,0 +1,1 @@
+`pkg-config –cflags opencv` main.cpp -o op.o `pkg-config –libs opencv`

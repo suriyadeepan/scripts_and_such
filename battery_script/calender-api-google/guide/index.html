@@ -1,0 +1,681 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="devsite">
+
+  
+
+  <head>
+    <meta charset="utf-8" />
+    <script src="/_static/js/script_head.js"></script>
+    <link rel="stylesheet" type="text/css" href="/_static/css/screen.css" />
+    <link rel="shortcut icon" href="/_static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/_static/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+    <script src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <!--[if lt IE 9]>
+    <script src="/_static/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <script type="text/javascript">
+    var contentTimer = new window.jstiming.Timer();
+
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'en';
+  </script>
+  
+  <title>Google Calendar API - Google Apps Platform &mdash; Google Developers</title>
+  
+  
+  
+
+
+
+<link rel="stylesheet" href="/google-apps/css/apps.css" />
+
+
+
+    
+    
+
+  </head>
+  <body class="two-column docs">
+    
+    <div id="sandbar">
+      
+      
+
+
+
+
+<header id="gc-googlebar">
+
+  <a id="gc-logo" href="/">
+    <img src="/_static/images/developers-logo.svg" alt="Google"/>
+  </a>
+<script>
+if (!Modernizr || !Modernizr.svg) {
+  $('#gc-logo img').attr({src:'/_static/images/developers-logo.png'});
+}
+</script>
+
+  <div class="gc-social">
+    
+    <span class='signed-out'>
+      <a href="/setup?state=%2Fgoogle-apps%2Fcalendar%2F" id="loginLink" class="button">Sign in</a>
+    </span>
+    
+  </div>
+
+  <form class="gc-search" action="/search/results" method="GET">
+    <div class="searchbox">
+      
+      
+        <span class="button button-blue mini">Google Calendar API</span>
+      
+      <input type="text" name="q" class="q" id="q" value="" placeholder='Search' autocomplete="off" />
+    </div>
+    <button class="button button-blue">
+      <img src="/_static/images/search.png" alt="Search"/>
+    </button>
+    
+      <input type="hidden" name="p" id="search_project" value="/google-apps/calendar" />
+    
+  </form>
+
+</header>
+
+
+<script>
+  var a=!1,h=window.devsite||{};window.devsite=h;var _gaq=_gaq||[];WebFontConfig={google:{families:["Open+Sans"]}};h.location=window.location;h.reloadWindow=function(){h.location.reload()};h.openWindow=window.open;h.devsite=h.devsite||{};h.devsite.dialogConfig={autoOpen:a,modal:!0,show:"fade",dialogClass:"msgDialog",closeText:"",resizable:a,draggable:a,zIndex:9999};h.KD_FADE_LONG=218;h.KD_FADE_SHORT=130;h.progress=h.progress||{};h.progress.INTERVAL_TIME_MS=460;h.progress.MAX_LOOP=100;h.progress.RIGHT_MARGIN=6;h.progress.TOP_MARGIN=-15;
+h.progress.kennedyProgressDot=function(c){var b=c.parent().find(".progress");b.remove();h.progress.circleInnerHtml='<span class="mask first"><span class="base"></span><span class="mover"></span></span><span class="mask second"><span class="base"></span><span class="mover"></span></span>';h.progress.spinnerHtml='<div class="circle initial"><span class="mask"><span class="mover"></span></span></div><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div><div class="circle blue"></div>';b=
+$("<div></div>").prop("id","loader").prop("class","yellow").html(h.progress.spinnerHtml);b.find(".red").html(h.progress.circleInnerHtml);b.find(".blue").html(h.progress.circleInnerHtml);b.find(".green").html(h.progress.circleInnerHtml);b.find(".yellow").html(h.progress.circleInnerHtml);b.css({position:"absolute",right:h.progress.RIGHT_MARGIN+"px",top:h.progress.TOP_MARGIN+"px"});c.parent().append(b);c=function(){this.colorIndex=-1;this.colors=["red","yellow","green","blue"];this.loader=b;this.loopCount=
+0;this.shouldStop=a};c.prototype.start=function(){var b=this;this.loader.removeClass();this.loader.addClass("firstTime");this.interval=setInterval(function(){b.loop()},h.progress.INTERVAL_TIME_MS)};c.prototype.loop=function(){this.loopCount+=1;this.loader.hasClass("firstTime")?(this.loader.removeClass("firstTime"),this.loader.addClass("initial")):this.loader.hasClass("stopped")?(this.loader.removeClass("stopped"),this.loader.addClass("finishing")):this.loader.hasClass("finishing")?(clearInterval(this.interval),
+b.remove()):(this.colorIndex=(this.colorIndex+1)%this.colors.length,this.loader.removeClass(),this.loader.addClass(this.colors[this.colorIndex]),(this.shouldStop||this.loopCount>h.progress.MAX_LOOP)&&this.loader.addClass("stopped"))};c.prototype.stop=function(){this.shouldStop=!0};var e=new c;return c={start:function(){$.fx.off||e.start()},clear:function(){b.remove()},error:function(){e.stop()}}};h.progress=h.progress||{};
+h.progress.progressDot=function(c){function b(){d+=1;100>d&&f.animate({opacity:"toggle"},h.KD_FADE_LONG,b)}var e=6,f=c.parent().find(".progress");f.remove();f=$("<div></div>").addClass("progress");f.css({position:"absolute","border-radius":e+"px",border:e+"px solid #3D9400",right:e+"px",top:c.parent().height()/2-e+"px",width:0,height:0});c.parent().append(f);var d=0;return c={start:function(){$.fx.off||b()},clear:function(){f.remove()},error:function(){f.stop();f.css({opacity:1,border:e+"px solid #DD4B39"})}}};h.location=window.location;h.setTimeout=function(){return window.setTimeout.apply(window,arguments)};h.clearTimeout=function(){window.clearTimeout.apply(window,arguments)};h.localInit=function(){h.search.init()};h.search={KEY_ESC:27,fadeTime:h.KD_FADE_SHORT,keyDelay:300};
+h.search.init=function(){h.search.initResultHandlers();var c=$(".gc-search");c.submit(function(){if(window.devsite.geo){var b=window.devsite.geo.lat+","+window.devsite.geo.lon,b=$('<input type="hidden" name="l"/>').val(b);c.append(b)}});var b=$("#q");b.unbind("keyup click");b.bind("keyup click",function(b){h.search.timeout&&h.clearTimeout(h.search.timeout);$(this).val()&&b.keyCode!=h.search.KEY_ESC?h.search.timeout=h.setTimeout(function(){h.search.updateResults()},h.search.keyDelay):h.search.removeAutocomplete()});
+var b=$(".searchbox").children(".button"),e=$("#restrict input");(e.is(":checked")||0==e.length&&0!=b.length)&&h.search.grow();$("body").delegate("#restrict input","click",function(){$(this).is(":checked")?h.search.grow($("#restrict input").val()):h.search.shrink();h.search.updateResults();$("#q").focus()})};
+h.search.initResultHandlers=function(){$(".search-results .result").unbind("click");$(".search-results .result").click(function(){var c={type:$(this).data("type"),url:$(this).data("url"),hl:$(this).data("hl"),q:$(this).data("q")};$.post("/search/go",c,function(b){b&&(h.location.href=b)});return a})};h.search.fadeOutIfExists=function(c,b,e){c&&c.length?c.fadeOut(b,e):e()};h.search.removeAutocomplete=function(){var c=$(".search-autocomplete");c.remove();h.search.lastQ=null};
+h.search.grow=function(c){var b=$("#q"),e=$(".searchbox"),f=$(".gc-search").children("button"),d=e.children(".button");if(c){var d=b.val(),g=$(".results").data("query-match");g&&b.val(d.substr(g.length+1));d=$("<span></span>");d.addClass("button button-blue mini");d.text($("#restrict").find("span").text());d.data("query-match",g);e.prepend(d);g=$("<input />");g.attr({id:"search_project",type:"hidden",name:"p",value:c});$(".gc-search").append(g)}d.append($("<pre>  X</pre>"));g=$(".searchbox").width();
+c=d.outerWidth(!0);var l=e.outerWidth(!0)+c;e.css("width",l+"px");b.css("width",g+"px");b=f.offset();b.left+=c+10;f.offset(b);f=function(){h.search.shrink();$("#q").focus()};d.click(f)};
+h.search.shrink=function(){var c=$("#q"),b=$(".searchbox"),e=b.children("input"),f=b.children(".button"),d=f.data("query-match");d&&e.val($.trim(d)+" "+e.val());e=$(".gc-search").children("button");$("#restrict input").prop("checked",a);$("#search_project").remove();d=f.outerWidth(!0);f.remove();f=e.offset();f.left-=d+10;b.css("width","");c.css("width","100%");e.offset(f)};
+h.search.updateResults=function(){var c=$(".searchbox"),b=$("#q"),e=$("#search_project"),f={q:$.trim(b.val()||"")};window.devsite.geo&&(f.l=window.devsite.geo.lat+","+window.devsite.geo.lon);e&&e.val()&&(f.p=escape(e.val()));if(!h.search.lastQ||!(h.search.lastQ.q==f.q&&h.search.lastQ.p==f.p)){h.search.lastQ=f;h.search.xhr&&h.search.xhr.abort();var d=$(".search-results");f.n=d.data("n")||4;var g=h.progress.kennedyProgressDot(b);g.start();h.search.xhr=$.get("/search/results",f,function(e){g.clear();
+e&&($("#what-q").text(f.q),d=$(".search-results"),h.search.fadeOutIfExists(d,h.search.fadeTime,function(){d.empty();if($.trim(e).length){if(!d.length){d=$("<div></div>").addClass("search-results search-autocomplete").data("n",4);$("body").append(d);var g=c.offset();d.css({position:"absolute",top:g.top+c.outerHeight()+3,left:g.left})}d.append(e);var g=$("#search-next"),k=d.children(".results").data("c");g.length?k?(g.attr("href","/search/results?c="+encodeURIComponent(k)+"&q="+encodeURIComponent(f.q)),
+g.show()):g.hide():$("#search-full").show();$("body").bind("click.searchAutocomplete",function(c){!$.contains(d.get(0),c.target)&&(!d.is(c.target)&&!b.is(c.target))&&d.hasClass("search-autocomplete")&&(h.search.removeAutocomplete(),$(this).unbind("click.searchAutocomplete"))});h.search.initResultHandlers();d.fadeIn(h.search.fadeTime)}}))});h.search.xhr.error(function(){g.error()})}};
+
+
+  if (window.jQuery) {
+    $(document).ready(function() {
+      window.devsite.search.init();
+
+      var loginLink = $('#loginLink');
+      if (loginLink.length > 0) {
+        loginLink.click(devsite.devsite.login);
+      }
+    });
+  }
+</script>
+
+      
+    </div>
+    
+
+    
+    
+
+    <div id="gc-wrapper" itemscope itemtype="http://schema.org/Article">
+      
+      <input id="gc-analytics" type="hidden" value="UA-24532603-1" />
+      
+
+      
+
+      <div id="gc-topnav">
+        <div>
+
+          
+          
+
+          <ul>
+
+            
+            
+
+            
+            
+            
+            
+            <li class=""><a href="/">Home</a></li>
+            
+            <li class="active"><a href="/products/">Products</a></li>
+            
+            <li class=""><a href="/events/">Conferences</a></li>
+            
+            <li class=""><a href="/showcase/">Showcase</a></li>
+            
+            <li class=""><a href="/live/">Live</a></li>
+            
+            <li class=""><a href="/groups/">Groups</a></li>
+            
+
+            
+            
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+
+      
+      
+      
+        <div id="gc-appbar">
+          
+          
+<h1>
+
+  <a href="/google-apps/">Google Apps Platform</a>
+  <div class="plusone-container">
+    <div class="g-plusone"
+      data-href="https://developers.google.com/google-apps/calendar/"
+      data-size="medium"
+      data-source="google:developers"></div>
+  </div>
+
+
+
+
+
+
+</h1>
+
+
+          
+        </div>
+      
+      
+
+      
+        
+      <div id="gc-main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar">
+        
+
+  
+
+
+
+  <nav class="gc-toc"><ul><li class=""><a href="/google-apps/calendar" data-title="Google Calendar API v3"><span>Google Calendar API v3</span></a><ul><li class=""><span class="tlw-title" data-title="Get Started">Get Started</span><ul><li class=""><a href="/google-apps/calendar/get_started" data-title="Ways to Get Started"><span>Ways to Get Started</span></a></li><li class=""><a href="/google-apps/calendar/concepts" data-title="Calendar Concepts"><span>Calendar Concepts</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Your First App">Your First App</span><ul><li class=""><a href="/google-apps/calendar/firstapp" data-title="Prerequisites"><span>Prerequisites</span></a></li><li class=""><a href="/google-apps/calendar/setup" data-title="Set up a Client Library"><span>Set up a Client Library</span></a></li><li class=""><a href="/google-apps/calendar/instantiate" data-title="Configure your App"><span>Configure your App</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="How-To Guides">How-To Guides</span><ul><li class=""><a href="/google-apps/calendar/recurringevents" data-title="Create Recurring Events"><span>Create Recurring Events</span></a></li><li class=""><a href="/google-apps/calendar/auth" data-title="Authorize Requests"><span>Authorize Requests</span></a></li><li class=""><a href="/google-apps/calendar/performance" data-title="Improve Performance"><span>Improve Performance</span></a></li><li class=""><a href="/google-apps/calendar/batch" data-title="Batch Support"><span>Batch Support</span></a></li><li class=""><a href="/google-apps/calendar/migration" data-title="Migrate to v3"><span>Migrate to v3</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference" data-title="Reference"><span>Reference</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/acl" data-title="Acl"><span>Acl</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/acl/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/acl/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList" data-title="CalendarList"><span>CalendarList</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendarList/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars" data-title="Calendars"><span>Calendars</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/calendars/clear" data-title="clear"><span>clear</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/calendars/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/colors" data-title="Colors"><span>Colors</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/colors/get" data-title="get"><span>get</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/events" data-title="Events"><span>Events</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/events/delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/import" data-title="import"><span>import</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/instances" data-title="instances"><span>instances</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/list" data-title="list"><span>list</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/move" data-title="move"><span>move</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/quickAdd" data-title="quickAdd"><span>quickAdd</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/update" data-title="update"><span>update</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/events/patch" data-title="patch"><span>patch</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/freebusy" data-title="Freebusy"><span>Freebusy</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/freebusy/query" data-title="query"><span>query</span></a></li></ul></li><li class=""><a href="/google-apps/calendar/v3/reference/settings" data-title="Settings"><span>Settings</span></a><ul><li class=""><a href="/google-apps/calendar/v3/reference/settings/get" data-title="get"><span>get</span></a></li><li class=""><a href="/google-apps/calendar/v3/reference/settings/list" data-title="list"><span>list</span></a></li></ul></li></ul></li><li class=""><a href="/google-apps/calendar/downloads" data-title="Downloads"><span>Downloads</span></a></li><li class=""><a href="/google-apps/calendar/pricing" data-title="Usage Limits"><span>Usage Limits</span></a></li><li class=""><a href="/google-apps/calendar/v3/whats-new" data-title="What&#39;s New in v3"><span>What&#39;s New in v3</span></a></li></ul></li></ul><hr/><ul><li class="deprecated"><a href="/google-apps/calendar/v2/developers_guide_protocol" data-title="Google Calendar API v2"><span>Google Calendar API v2<sup>Deprecated</sup></span></a><ul><li class=""><a href="/google-apps/calendar/v2/developers_guide_protocol" data-title="Protocol Guide"><span>Protocol Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_dotnet" data-title=".NET Guide"><span>.NET Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_java" data-title="Java Guide"><span>Java Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/developers_guide_python" data-title="Python Guide"><span>Python Guide</span></a></li><li class=""><a href="/google-apps/calendar/v2/reference" data-title="Atom Reference"><span>Atom Reference</span></a></li><li class=""><a href="/google-apps/calendar/v2/faq" data-title="FAQ"><span>FAQ</span></a></li></ul></li></ul><hr/><ul><li class="deprecated"><a href="/google-apps/calendar/v1/developers_guide_protocol" data-title="Google Calendar API v1"><span>Google Calendar API v1<sup>Deprecated</sup></span></a><ul><li class=""><a href="/google-apps/calendar/v1/developers_guide_protocol" data-title="Protocol Guide"><span>Protocol Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_dotnet" data-title=".NET Guide"><span>.NET Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_java" data-title="Java Guide"><span>Java Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_python" data-title="Python Guide"><span>Python Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/developers_guide_javascript" data-title="JavaScript Guide"><span>JavaScript Guide</span></a></li><li class=""><a href="/google-apps/calendar/v1/reference" data-title="Atom Reference"><span>Atom Reference</span></a></li></ul></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/gadgets" data-title="Calendar Gadgets"><span>Calendar Gadgets</span></a><ul><li class=""><a href="/google-apps/calendar/gadgets/event/" data-title="Event Gadgets"><span>Event Gadgets</span></a></li><li class=""><a href="/google-apps/calendar/gadgets/sidebar/" data-title="Sidebar Gadgets"><span>Sidebar Gadgets</span></a></li></ul></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/caldav" data-title="CalDAV Developer&#39;s Guide"><span>CalDAV Developer&#39;s Guide</span></a></li></ul><hr/><ul><li class=""><a href="https://groups.google.com/forum/embed/?place=forum/google-calendar-api&amp;showsearch=true" data-title="Discussions"><span>Discussions</span></a></li><li class=""><a href="http://code.google.com/a/google.com/p/apps-api-issues/issues/list?q=label:API-Calendar" data-title="Issue Tracker"><span>Issue Tracker</span></a></li></ul><hr/><ul><li class=""><a href="/google-apps/calendar/terms" data-title="Terms of Service"><span>Terms of Service</span></a></li></ul></nav>
+
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           
+           >
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title" >Google Calendar API</h1>
+  
+  <div itemprop="articleBody">
+  
+<p>The Google Calendar API lets you develop client applications that create new events, edit or delete existing events, and search for events. This document describes how to use RESTful calling style and client libraries for various programming languages (currently Java, Python, PHP, .NET and Ruby) to access and edit Google Calendar data.</p>
+
+<div class="features">
+<section class="quickstart">
+<a href="/google-apps/calendar/firstapp"><img src="https://www.google.com/images/icons/apps/fastflip-64.png" alt="Google Apps Quickstart"/></a>
+<h3>Start Coding Now</h3>
+<p>
+Start writing a simple <a href="/google-apps/calendar/firstapp">application</a> immediately in your chosen language.</p>
+</section>
+<section class="reference">
+<h3>API Reference and Resources</h3>
+<p>
+<a href="/google-apps/calendar/downloads">Download client libraries</a> or go straight to the detailed <a href="/google-apps/calendar/v3/reference">reference documentation</a> </p>
+</p>
+</section>
+</div>
+
+<br>
+<p>Sites or applications that want deeper integration with Google Calendar can leverage the Google Calendar API. For example, you could develop a web application to create or display Calendar data, or a desktop application that synchronizes a user's Calendar with an existing desktop application. Your app could be a device that brings the Calendar experience to a new platform.</p>
+
+<p>If you're unfamiliar with Google Calendar API concepts or Google Apps APIs, see our tips on how to <a href="/google-apps/calendar/get_started.html">Get Started</a>.</p>
+
+<p class="note">As of version 3.0, the Google Calendar API uses JSON data objects instead of the GData format.  If you need to migrate legacy clients, see the <a href="/google-apps/calendar/migration">migration guide</a></p>
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+
+
+<div itemprop="datePublished" content="2012-12-20T13:07:20.840310" id="gc-content-last-updated">Last updated December 20, 2012.</div>
+
+</div>
+
+
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+
+      
+      
+      <footer id="gc-footer">
+        <div id="gc-copyright">
+          <a href="/">
+            <img id="developers-logo-footer" src="/_static/images/developers-logo-footer.png" alt="Google Developers logo" style="vertical-align: center; float: left"/>
+          </a>
+          <ul>
+            <li><a href="http://www.google.com/">Google</a></li>
+            <li><a href="/readme/terms">Terms of Service</a></li>
+            <li><a href="http://www.google.com/intl/en/privacy/">Privacy Policy</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a class="google-feedback" data-p="81425" data-b="Documentation"  data-v="devsite-20130410-rc04.366586502223178962" href="">Report a bug</a></li>
+          </ul>
+        </div>
+        
+        <div id="gc-language">
+          <ul>
+            <li>
+              <form id="setlang" action="/i18n/setlang/" method="post">
+                <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='270eeade19f240c76f7435ab34d16eed' /></div>
+                <select id="footer_language" name="language">
+                  
+                  
+                  <option
+                     value="ar"
+                     >
+                    العربيّة
+                  </option>
+                  
+                  <option
+                     value="bg"
+                     >
+                    български
+                  </option>
+                  
+                  <option
+                     value="ca"
+                     >
+                    català
+                  </option>
+                  
+                  <option
+                     value="zh-cn"
+                     >
+                    简体中文
+                  </option>
+                  
+                  <option
+                     value="zh-tw"
+                     >
+                    繁體中文
+                  </option>
+                  
+                  <option
+                     value="hr"
+                     >
+                    Hrvatski
+                  </option>
+                  
+                  <option
+                     value="cs"
+                     >
+                    česky
+                  </option>
+                  
+                  <option
+                     value="da"
+                     >
+                    Dansk
+                  </option>
+                  
+                  <option
+                     value="nl"
+                     >
+                    Nederlands
+                  </option>
+                  
+                  <option
+                     value="en"
+                      selected="selected" >
+                    English
+                  </option>
+                  
+                  <option
+                     value="fa"
+                     >
+                    فارسی
+                  </option>
+                  
+                  <option
+                     value="fi"
+                     >
+                    suomi
+                  </option>
+                  
+                  <option
+                     value="fr"
+                     >
+                    Français
+                  </option>
+                  
+                  <option
+                     value="de"
+                     >
+                    Deutsch
+                  </option>
+                  
+                  <option
+                     value="el"
+                     >
+                    Ελληνικά
+                  </option>
+                  
+                  <option
+                     value="he"
+                     >
+                    עברית
+                  </option>
+                  
+                  <option
+                     value="hi"
+                     >
+                    Hindi
+                  </option>
+                  
+                  <option
+                     value="hu"
+                     >
+                    Magyar
+                  </option>
+                  
+                  <option
+                     value="id"
+                     >
+                    Bahasa Indonesia
+                  </option>
+                  
+                  <option
+                     value="it"
+                     >
+                    italiano
+                  </option>
+                  
+                  <option
+                     value="ja"
+                     >
+                    日本語
+                  </option>
+                  
+                  <option
+                     value="ko"
+                     >
+                    한국어
+                  </option>
+                  
+                  <option
+                     value="lv"
+                     >
+                    latviešu
+                  </option>
+                  
+                  <option
+                     value="lt"
+                     >
+                    Lithuanian
+                  </option>
+                  
+                  <option
+                     value="nb"
+                     >
+                    Norsk (bokmål)
+                  </option>
+                  
+                  <option
+                     value="nn"
+                     >
+                    Norsk (nynorsk)
+                  </option>
+                  
+                  <option
+                     value="pl"
+                     >
+                    polski
+                  </option>
+                  
+                  <option
+                     value="pt-br"
+                     >
+                    Português Brasileiro
+                  </option>
+                  
+                  <option
+                     value="pt"
+                     >
+                    Português
+                  </option>
+                  
+                  <option
+                     value="ro"
+                     >
+                    Română
+                  </option>
+                  
+                  <option
+                     value="ru"
+                     >
+                    Русский
+                  </option>
+                  
+                  <option
+                     value="sr"
+                     >
+                    српски
+                  </option>
+                  
+                  <option
+                     value="sk"
+                     >
+                    slovenský
+                  </option>
+                  
+                  <option
+                     value="sl"
+                     >
+                    Slovenščina
+                  </option>
+                  
+                  <option
+                     value="es"
+                     >
+                    español
+                  </option>
+                  
+                  <option
+                     value="sv"
+                     >
+                    Svenska
+                  </option>
+                  
+                  <option
+                     value="th"
+                     >
+                    Thai
+                  </option>
+                  
+                  <option
+                     value="tr"
+                     >
+                    Türkçe
+                  </option>
+                  
+                  <option
+                     value="uk"
+                     >
+                    Українська
+                  </option>
+                  
+                  <option
+                     value="vi"
+                     >
+                    Vietnamese
+                  </option>
+                  
+                </select>
+              </form>
+            </li>
+          </ul>
+        </div>
+        
+      </footer>
+      
+      
+    </div>
+    <div id="needAuth" class="msgDialogContent">
+      
+      <h1>Authentication required</h1>
+      
+      <div>
+        You need to be signed in with <a href='http://www.google.com/+'>Google+</a> to do that.
+      </div>
+      <button>Sign in</button>
+      <button>Cancel</button>
+    </div>
+    <div id="signingIn" class="msgDialogContent">
+      
+      <h1>Signing you in...</h1>
+      <div>
+        
+        Google Developers needs your permission to do that.
+      </div>
+      
+      <button>Try again</button>
+      
+      <button>Cancel</button>
+    </div>
+    <script src="/_static/js/script_foot.js"></script>
+    <script>
+      (function($) {
+        devsite.devsite.Init($, null, '');
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+      
+    </script>
+    <!-- Google Code for PXL - Developers - Codesite - HP - 90d Remarketing List -->
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if ($.browser.msie) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+
+    
+
+    <script>
+      
+      google.load('visualization', '1', {packages: ['table']});
+    </script>
+
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    // Render any carousels on the page
+    $('.carousel').carousel();
+    // Render any feed widgets on the page
+    
+    $('.feed').rss();
+    $('.feed-plain').rss();
+    // Render any OSS widgets on the page.
+    $('.oss').oss();
+    });
+</script>
+
+<script type="text/javascript" defer>
+
+
+$(document).ready(function() {
+    contentTimer.name = 'content';
+    contentTimer.tick('ol');
+    window.jstiming.report(contentTimer);
+
+    // Boilerplate javascript to enable the plusone button
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+});
+</script>
+
+
+
+
+
+  </body>
+
+  
+</html>
